@@ -131,7 +131,7 @@ export default class Player extends cc.Component
         } else if(other.node.name == "enemy") {
             cc.log("Mario hits the enemy");
             this.isDead = true;
-        } else if(other.node.name == "hell") {
+        } else if(other.node.name == "hell" || other.node.name == "left_wall") {
             cc.log("Mario hits the hell");
             this.isDead = true;
         }
@@ -144,9 +144,9 @@ export default class Player extends cc.Component
             this.camera.x = 0;
             // this.map.x = 478;
         }
-        else if(this.node.x > 650)
+        else if(this.node.x > 600)
         {
-            this.camera.x = 650;
+            this.camera.x = 600;
         }
         else
         {
