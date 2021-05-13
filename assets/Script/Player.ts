@@ -64,7 +64,7 @@ export default class Player extends cc.Component
         this.playerSpeed = 0;
         if(this.isDead) {
             this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(0, 0);
-            this.node.position = cc.v2(147, 113);
+            this.node.position = cc.v2(200, 62);
             this.isDead = false;
             return;
         }
@@ -88,7 +88,7 @@ export default class Player extends cc.Component
         this.onGround = false;
 
         // Method I: Apply Force to rigidbody
-        this.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(0, 27000), true);
+        this.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(0, 100000), true);
 
         // Method II: Change velocity of rigidbody
         // this.getComponent(cc.RigidBody).linearVelocity = cc.v2(0, 1500);
@@ -144,9 +144,9 @@ export default class Player extends cc.Component
             this.camera.x = 0;
             // this.map.x = 478;
         }
-        else if(this.node.x > 600)
+        else if(this.node.x > 1800)
         {
-            this.camera.x = 600;
+            this.camera.x = 1800;
         }
         else
         {
