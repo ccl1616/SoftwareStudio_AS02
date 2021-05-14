@@ -101,7 +101,7 @@ export default class Player extends cc.Component
         bullet.getComponent('Bullet_ans').init(this.node);
     }*/
     private animation() {
-        if(this.onGround)
+        if(this.onGround && !this.isDead)
             this.getComponent(cc.Sprite).spriteFrame = this.groundSprite;
         else this.getComponent(cc.Sprite).spriteFrame = this.jumpSprite;
     }
@@ -118,24 +118,26 @@ export default class Player extends cc.Component
             this.onGround = true;
         } 
         else if(other.node.name == "block" || other.node.name == "tube") {
-            cc.log( "x:" + contact.getWorldManifold().normal.x );
-            cc.log( "y:" + contact.getWorldManifold().normal.y );
+            // cc.log( "x:" + contact.getWorldManifold().normal.x );
+            // cc.log( "y:" + contact.getWorldManifold().normal.y );
             
             if(contact.getWorldManifold().normal.y <= -0.9){
                 // mario from up
-                cc.log("vertical");
+                // cc.log("vertical");
                 contact.disabled = false;
                 this.onGround = true;
             }
             else {
                 // mario from left, right
-                cc.log("horizontal");
+                // cc.log("horizontal");
                 contact.disabled = true;
                 this.onGround = true;
             } 
 
             cc.log("Mario hits the block");
             // this.onGround = true;
+        } else if(other.node.name == "bridge"){
+            this.onGround = true;
         } else if(other.node.name == "enemy") {
             cc.log("Mario hits the enemy");
             this.isDead = true;
