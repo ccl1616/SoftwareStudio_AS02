@@ -3,8 +3,10 @@ const {ccclass, property} = cc._decorator;
 @ccclass
 export default class Player extends cc.Component 
 {
-    /* @property(cc.Prefab)
-    private bulletPrefab: cc.Prefab = null;*/
+    @property(cc.SpriteFrame)
+    jumpSprite: cc.SpriteFrame = null;
+    @property(cc.SpriteFrame)
+    groundSprite: cc.SpriteFrame = null;
 
     private playerSpeed: number = 0;
 
@@ -98,10 +100,16 @@ export default class Player extends cc.Component
         let bullet = cc.instantiate(this.bulletPrefab);
         bullet.getComponent('Bullet_ans').init(this.node);
     }*/
+    private animation() {
+        if(this.onGround)
+            this.getComponent(cc.Sprite).spriteFrame = this.groundSprite;
+        else this.getComponent(cc.Sprite).spriteFrame = this.jumpSprite;
+    }
     
     update(dt) {
         this.playerMovement(dt);
         this.camerafollow();
+        this.animation();
     }
 
     onBeginContact(contact, self, other) {
