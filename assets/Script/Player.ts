@@ -109,7 +109,7 @@ export default class Player extends cc.Component
             cc.log("Mario hits the ground");
             this.onGround = true;
         } 
-        else if(other.node.name == "block") {
+        else if(other.node.name == "block" || other.node.name == "tube") {
             cc.log( "x:" + contact.getWorldManifold().normal.x );
             cc.log( "y:" + contact.getWorldManifold().normal.y );
             
