@@ -117,11 +117,11 @@ export default class Player extends cc.Component
             cc.log("Mario hits the ground");
             this.onGround = true;
         } 
-        else if(other.node.name == "block" || other.node.name == "tube") {
+        else if(other.node.name == "block") {
             // cc.log( "x:" + contact.getWorldManifold().normal.x );
             // cc.log( "y:" + contact.getWorldManifold().normal.y );
             
-            if(contact.getWorldManifold().normal.y <= -0.9){
+            if(contact.getWorldManifold().normal.y != 0){
                 // mario from up
                 // cc.log("vertical");
                 contact.disabled = false;
@@ -140,7 +140,8 @@ export default class Player extends cc.Component
             this.onGround = true;
         } else if(other.node.name == "enemy") {
             cc.log("Mario hits the enemy");
-            this.isDead = true;
+            // this.onGround = true;
+            // this.isDead = true;
         } else if(other.node.name == "hell" || other.node.name == "left_wall") {
             cc.log("Mario hits the hell");
             this.isDead = true;

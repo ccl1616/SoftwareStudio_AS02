@@ -65,15 +65,19 @@ export default class Enemy extends cc.Component {
             // cc.log("Enemy hits the block");
             this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.speed, 0);
         } else if(other.node.name == "Player") {
-            if(contact.getWorldManifold().normal.x == 0){
-                cc.log("vertical");
+            // cc.log("x: " + contact.getWorldManifold().normal.x);
+            // cc.log("y: " + contact.getWorldManifold().normal.y);
+            if(contact.getWorldManifold().normal.y == 1){
+                // cc.log("vertical");
+                // cc.log("step");
                 this.speed = 0;
                 contact.disabled = true;
                 this.isStepped = true;
                 this.scheduleOnce(function() { self.node.destroy(); cc.log("killed"); }, 0.1);
             }
             else {
-                cc.log("horizontal");
+                cc.log("horizontal or head");
+                // minus life
                 contact.disabled = true;
             } 
             // this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.speed, 0);
