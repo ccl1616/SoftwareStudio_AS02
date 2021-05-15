@@ -142,9 +142,12 @@ export default class Player extends cc.Component
             cc.log("Mario hits the enemy");
             // this.onGround = true;
             // this.isDead = true;
-        } else if(other.node.name == "hell" || other.node.name == "left_wall") {
-            cc.log("Mario hits the hell");
+        } else if(other.node.name == "hell" || other.node.name == "left_bond") {
+            cc.log("Mario hits left bound");
             this.isDead = true;
+        }
+        else if(other.node.name == "left_wall") {
+            contact.disabled = true;
         }
     }
 
