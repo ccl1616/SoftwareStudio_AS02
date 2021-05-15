@@ -41,7 +41,11 @@ export default class flower extends cc.Component {
             this.cnt += 1;
         }, 1);
     }
-
+    onBeginContact(contact, self, other) {
+        if(other.node.name == "Player"){
+            cc.log("flower hits player");
+        }
+    }
     // update (dt) {}
     
 }

@@ -46,7 +46,7 @@ export default class turtle extends cc.Component {
                 this.scheduleOnce(function() { self.node.destroy(); cc.log("killed"); }, 0.1);
             }
             else {
-                cc.log("hit leftBound");
+                // cc.log("hit leftBound");
                 this.node.scaleX = -1;
                 this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(-1*this.speed, 0);
             }

@@ -145,7 +145,7 @@ export default class Player extends cc.Component
         } else if(other.node.name == "flower") {
             cc.log("Mario hits the folwer");
             // this.onGround = true;
-            // this.isDead = true;
+            this.isDead = true;
         } else if(other.node.name == "hell" || other.node.name == "left_bond") {
             cc.log("Mario hits left bound");
             this.isDead = true;
