@@ -21,36 +21,48 @@ export default class coin extends cc.Component {
     coin3: cc.SpriteFrame = null;
     
     
-    private counter: number;
+    private tmp: number = 0;
 
     onLoad () {
         this.getComponent(cc.Sprite).spriteFrame == this.coin1;
-        this.counter = 0;
-        // this.animation();
+        this.tmp = 0;
+        this.animation();
     }
 
     start() {
         this.getComponent(cc.Sprite).spriteFrame == this.coin1;
-        this.counter = 0;
-        // this.animation();
-    }
-
-    update (dt) {
-        // cc.log(this.counter);
-        if(this.counter == 2) this.counter = 0;
-        else this.counter ++;
-        // cc.log(this.counter%4);
+        // this.counter = 0;
         this.animation();
     }
 
+    update (dt) {
+        /*
+        cc.log(this.counter);
+        if(this.counter == 2) this.counter = 0;
+        else this.counter ++;
+        cc.log(this.counter%4);
+        this.animation(); */
+    }
+
     private animation(){
-        
+        this.schedule( function(){
+
+            if(this.tmp %3 ==  0)
+            this.getComponent(cc.Sprite).spriteFrame == this.coin1;
+            else if(this.tmp %3 == 1)
+                this.getComponent(cc.Sprite).spriteFrame == this.coin2;
+            else 
+                this.getComponent(cc.Sprite).spriteFrame == this.coin3;
+
+            this.tmp ++;
+        } , 0.3 );
         // cc.log(this.counter);
+        /*
         if(this.counter == 0)
             this.getComponent(cc.Sprite).spriteFrame == this.coin1;
         else if(this.counter == 1)
             this.getComponent(cc.Sprite).spriteFrame == this.coin2;
         else 
-            this.getComponent(cc.Sprite).spriteFrame == this.coin3;
+            this.getComponent(cc.Sprite).spriteFrame == this.coin3; */
     }
 }
