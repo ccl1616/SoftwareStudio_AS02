@@ -42,9 +42,14 @@ export default class turtle extends cc.Component {
 
     onBeginContact(contact, self, other) {
         if(other.node.name == "left_wall") {
-            cc.log("hit leftBound");
-            this.node.scaleX = -1;
-            this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(-1*this.speed, 0);
+            if(this.isStepped){
+                this.scheduleOnce(function() { self.node.destroy(); cc.log("killed"); }, 0.1);
+            }
+            else {
+                cc.log("hit leftBound");
+                this.node.scaleX = -1;
+                this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(-1*this.speed, 0);
+            }
         } else if(other.node.name == "block" || other.node.name == "tube") {
             this.node.scaleX = 1;
             this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.speed, 0);
@@ -57,7 +62,9 @@ export default class turtle extends cc.Component {
                 contact.disabled = true;
                 this.speed = 0;
                 this.isStepped = true;
-                this.scheduleOnce(function() { self.node.destroy(); cc.log("killed"); }, 0.1);
+                this.scheduleOnce(function() { 
+                    this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(-180, 0);
+                }, 0.1);
             }
             else {
                 cc.log("horizontal or head");
@@ -70,7 +77,7 @@ export default class turtle extends cc.Component {
             this.isDead = true;
         } 
     }
-
+    
     private animation() {
         if(this.isStepped)
             this.getComponent(cc.Sprite).spriteFrame = this.deadSprite;
