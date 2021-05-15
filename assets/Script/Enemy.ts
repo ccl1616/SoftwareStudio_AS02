@@ -1,0 +1,99 @@
+// Learn TypeScript:
+//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/typescript.html
+//  - [English] http://www.cocos2d-x.org/docs/creator/manual/en/scripting/typescript.html
+// Learn Attribute:
+//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/reference/attributes.html
+//  - [English] http://www.cocos2d-x.org/docs/creator/manual/en/scripting/reference/attributes.html
+// Learn life-cycle callbacks:
+//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
+//  - [English] http://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
+
+const {ccclass, property} = cc._decorator;
+
+@ccclass
+export default class Enemy extends cc.Component {
+
+    // LIFE-CYCLE CALLBACKS:
+    @property(cc.SpriteFrame)
+    aliveSprite: cc.SpriteFrame = null;
+    @property(cc.SpriteFrame)
+    deadSprite: cc.SpriteFrame = null;
+
+    private rebornPos = null;
+
+    private isDead = true;
+
+    private isStepped = false;
+
+    private speed = -200;
+
+    onLoad() {
+        cc.director.getPhysicsManager().enabled = true;
+    }
+
+    start() {
+        this.rebornPos = this.node.position;
+        this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.speed, 0);
+        this.isDead = false;
+    }
+
+    update(dt) {
+        this.animation();
+        if(this.isDead) {
+            this.resetPos();
+            this.isDead = false;
+            this.isStepped = false;
+            this.speed = -200;
+        }
+    }
+
+    public resetPos() {
+        this.node.position = this.rebornPos;
+        this.node.scaleX = 1;
+        this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.speed, 0);
+    }
+
+    onBeginContact(contact, self, other) {
+        if(other.node.name == "left_wall") {
+            /*
+            this.node.scaleX = -1;
+            this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(200, 0); */
+            this.isDead = true;
+        } else if(other.node.name == "block" || other.node.name == "tube") {
+            
+            contact.disabled = true;
+            // cc.log("Enemy hits the block");
+            this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.speed, 0);
+        } else if(other.node.name == "Player") {
+            if(contact.getWorldManifold().normal.x == 0){
+                cc.log("vertical");
+                this.speed = 0;
+                contact.disabled = true;
+                this.isStepped = true;
+                this.scheduleOnce(function() { self.node.destroy(); cc.log("killed"); }, 0.1);
+            }
+            else {
+                cc.log("horizontal");
+                contact.disabled = true;
+            } 
+            // this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.speed, 0);
+
+        } else if(other.node.name == "hell") {
+            this.isDead = true;
+        } else if(other.node.name == "ground") {
+            this.node.scaleX = 1;
+            this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.speed, 0);
+        } 
+    }
+    onEndContact(contact, self, other) {
+        if(other.node.name == "bridge") {
+          self.getComponent(cc.RigidBody).linearVelocity = cc.v2(0, 0);
+        }
+    }
+    private animation() {
+        if(this.isStepped)
+            this.getComponent(cc.Sprite).spriteFrame = this.deadSprite;
+        else this.getComponent(cc.Sprite).spriteFrame = this.aliveSprite;
+    }
+
+}
