@@ -18,7 +18,9 @@ export default class qbox extends cc.Component {
         this.schedule(function(){
             var id = this.cnt % 4;
             this.getComponent(cc.Sprite).spriteFrame = this.qbox_animation[id];
-            this.cnt += 1;
+            if(this.cnt == 3)
+                this.cnt = 1;
+            else this.cnt += 1;
         }, 0.1);
     }
     update (dt) {

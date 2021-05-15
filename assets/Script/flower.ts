@@ -11,21 +11,37 @@
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export default class NewClass extends cc.Component {
+export default class flower extends cc.Component {
 
-    @property(cc.Label)
-    label: cc.Label = null;
+    private cnt: number = 0;
 
-    @property
-    text: string = 'hello';
+    @property([cc.SpriteFrame])
+    public flower_animation: cc.SpriteFrame[] = [];
 
     // LIFE-CYCLE CALLBACKS:
 
     // onLoad () {}
 
     start () {
+        // let action = cc.moveBy(2,30,30);
+        // this.node.runAction(action);
+        this.animation();
+    }
 
+    private animation() {
+        let action1 = cc.moveBy(1,0,-68);
+        let action2 = cc.moveBy(1,0,68);
+        this.schedule(function(){
+            var id = this.cnt % 2;
+            if(id == 0)
+                this.node.runAction(action1);
+            else 
+                this.node.runAction(action2);
+            this.getComponent(cc.Sprite).spriteFrame = this.flower_animation[id];
+            this.cnt += 1;
+        }, 1);
     }
 
     // update (dt) {}
+    
 }
