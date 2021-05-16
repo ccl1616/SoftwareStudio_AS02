@@ -46,14 +46,13 @@ export default class qbox_m extends cc.Component {
                     this.adder = 0;
                     this.cnt = 0;
                     this.isOn = false;
-                    
                     var mm = cc.find("green_mushroom");
-                    let action2 = cc.sequence(cc.moveBy(0.2,0,33),cc.moveBy(0.2,33,0) );
+                    let action2 = cc.sequence(cc.moveBy(0.2,0,40),cc.moveBy(0.2,40,0) );
                     mm.runAction(action2);
-                    // mm.getComponent(cc.RigidBody).type = cc.RigidBodyType.Dynamic;
                     this.scheduleOnce( function() { 
                         cc.find("green_mushroom").getComponent(cc.RigidBody).type = cc.RigidBodyType.Dynamic;
                     } , 0.1);
+                    
                 }
             }
         }

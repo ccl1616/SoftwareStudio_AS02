@@ -358,7 +358,7 @@
       "array": [
         0,
         0,
-        396.63963493327293,
+        500.56268338740557,
         0,
         0,
         0,
@@ -5469,9 +5469,9 @@
       "__id__": 138
     },
     "_enabled": true,
-    "_type": 2,
+    "_type": 0,
     "_allowSleep": false,
-    "_gravityScale": 1,
+    "_gravityScale": 3,
     "_linearDamping": 0,
     "_angularDamping": 0,
     "_linearVelocity": {
