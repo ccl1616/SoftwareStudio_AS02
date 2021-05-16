@@ -18,7 +18,7 @@ export default class coin extends cc.Component {
     }
 
     start () {
-        this.animation();
+        // this.animation();
     }
 
     private animation() {
@@ -37,7 +37,7 @@ export default class coin extends cc.Component {
 
     onBeginContact(contact, self, other) {
         if(other.node.name == "Player") {
-            if(contact.getWorldManifold().normal.y == -1){
+            /* if(contact.getWorldManifold().normal.y == -1){
                 // head hit qbox
                 this.adder = 0;
                 this.cnt = 0;
@@ -46,7 +46,8 @@ export default class coin extends cc.Component {
                     this.node.runAction(action);
                     this.isOn = false;
                 }
-            }
+            } */
+            cc.log("coin hits Player");
         }
         // else this.animation();
     }
