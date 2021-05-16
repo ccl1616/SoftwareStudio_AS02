@@ -2,6 +2,10 @@ const {ccclass, property} = cc._decorator;
 
 @ccclass
 export default class green_mushroom extends cc.Component {
+
+    @property([cc.SpriteFrame])
+    public mm_animation: cc.SpriteFrame[] = [];
+
     private speed: number = 0;
     
     private is_first_time: boolean = true;
@@ -20,7 +24,12 @@ export default class green_mushroom extends cc.Component {
     onBeginContact(contact, self, other) {
         if(other.node.name == "Player"){
             cc.log("mushroom hits player");
-            // cc.log(this.is_created);
+            this.getComponent(cc.Sprite).spriteFrame = this.mm_animation[0];
+            this.scheduleOnce(function(){
+                let action = cc.fadeOut(0.5);
+                this.node.runAction(action);
+            },0.3);
+            this.scheduleOnce(function(){ this.node.destroy(); } , 1 );
         }
         else if(other.node.name == "ground"){
             if(this.is_first_time){

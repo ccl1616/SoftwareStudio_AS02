@@ -5520,6 +5520,14 @@
       "__id__": 138
     },
     "_enabled": true,
+    "mm_animation": [
+      {
+        "__uuid__": "6378c85d-4479-4fe5-9a2e-8b7ecc927dd1"
+      },
+      {
+        "__uuid__": "15486a82-c3f9-4f32-90b7-4e872231cae0"
+      }
+    ],
     "_id": "32ChpUQaJPU5URAw2pnrZI"
   },
   {
