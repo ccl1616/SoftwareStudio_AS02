@@ -325,7 +325,7 @@
       "array": [
         0,
         0,
-        552.5242076144718,
+        510.95498823281883,
         0,
         0,
         0,
@@ -2219,12 +2219,12 @@
     "_offset": {
       "__type__": "cc.Vec2",
       "x": 0,
-      "y": 0
+      "y": -2
     },
     "_size": {
       "__type__": "cc.Size",
-      "width": 40,
-      "height": 68
+      "width": 30,
+      "height": 65
     },
     "_id": "cfSnbHD2dDk7iXcZCH0Iiw"
   },

@@ -65,10 +65,12 @@ export default class Player extends cc.Component
     private playerMovement(dt) {
         this.playerSpeed = 0;
         if(this.isDead) {
-            this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(0, 0);
+            
+            /* this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(0, 0);
             this.node.position = cc.v2(200, 62);
             this.isDead = false;
-            return;
+            return; */
+            cc.director.loadScene("main");
         }
 
         if(this.zDown){
