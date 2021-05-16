@@ -29,7 +29,14 @@ export default class green_mushroom extends cc.Component {
                 let action = cc.fadeOut(0.5);
                 this.node.runAction(action);
             },0.3);
-            this.scheduleOnce(function(){ this.node.destroy(); } , 1 );
+            this.scheduleOnce(function(){ 
+                this.node.destroy(); 
+                var player = cc.find("Player");
+                player.setContentSize(38*1.5, 52*1.5); //57, 78
+                player.getComponent(cc.PhysicsBoxCollider).size.width = 38*1.5;
+                player.getComponent(cc.PhysicsBoxCollider).size.height = 52*1.5;
+                player.position.y = 70;
+            } , 1 );
         }
         else if(other.node.name == "ground"){
             if(this.is_first_time){
