@@ -22,6 +22,8 @@ export default class Player extends cc.Component
 
     private onGround: boolean = false;
 
+    private debug: boolean = true;
+
     @property(cc.Node)
     camera: cc.Node = null;
 
@@ -115,7 +117,7 @@ export default class Player extends cc.Component
     }
 
     onBeginContact(contact, self, other) {
-        if(other.node.name == "ground" || other.node.name == "tube") {
+        if(other.node.name == "ground" || other.node.name == "tube" || other.node.name == "cube") {
             cc.log("Mario hits the ground");
             this.onGround = true;
         } 
@@ -153,7 +155,8 @@ export default class Player extends cc.Component
         } else if(other.node.name == "flower") {
             cc.log("Mario hits the folwer");
             // this.onGround = true;
-            this.isDead = true;
+            if(!this.debug)
+                this.isDead = true;
         } else if(other.node.name == "hell" || other.node.name == "left_bond") {
             cc.log("Mario hits left bound");
             this.isDead = true;

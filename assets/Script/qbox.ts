@@ -37,6 +37,7 @@ export default class qbox extends cc.Component {
     onBeginContact(contact, self, other) {
         if(other.node.name == "Player") {
             if(contact.getWorldManifold().normal.y == -1){
+                // cc.log(self.name);
                 // head hit qbox
                 if(this.isOn){
                     this.adder = 0;
@@ -46,12 +47,13 @@ export default class qbox extends cc.Component {
                     this.isOn = false;
                     var coin = cc.find("coin");
                     
-                    let action2 = cc.sequence( cc.moveBy(0.5,0,40),cc.hide() );
+                    let action2 = cc.sequence( cc.moveBy(0.5,0,40),cc.hide());
                     coin.runAction(action2);
-
+                    this.scheduleOnce( function() { coin.destroy(); } , 2);
                     var score = cc.find("score100");
                     let action3 = cc.sequence( cc.hide(), cc.moveBy(0.5,0,40), cc.show(), cc.fadeOut(1.0) );
                     score.runAction(action3);
+                    this.scheduleOnce( function() { score.destroy(); } , 2);
                 }
             }
         }
