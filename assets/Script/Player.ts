@@ -138,7 +138,11 @@ export default class Player extends cc.Component
 
             cc.log("Mario hits the block");
             // this.onGround = true;
-        } else if(other.node.name == "bridge"){
+        } else if(other.node.name == "qbox"){
+            this.onGround = true;
+
+        }
+        else if(other.node.name == "bridge"){
             this.onGround = true;
         } else if(other.node.name == "Enemy") {
             cc.log("Mario hits the enemy");

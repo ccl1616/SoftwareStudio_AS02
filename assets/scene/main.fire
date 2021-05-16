@@ -3837,6 +3837,12 @@
       },
       {
         "__id__": 102
+      },
+      {
+        "__id__": 103
+      },
+      {
+        "__id__": 104
       }
     ],
     "_prefab": null,
@@ -3931,6 +3937,9 @@
     "_enabled": true,
     "qbox_animation": [
       {
+        "__uuid__": "d67fe116-15cb-41cd-b275-d1267b8a89ca"
+      },
+      {
         "__uuid__": "8de3e26e-8984-4d09-a5bc-cc28709c2854"
       },
       {
@@ -3941,11 +3950,59 @@
       },
       {
         "__uuid__": "54cf0ad8-e8cc-47a3-98f9-92331e141555"
-      },
-      {
-        "__uuid__": "d67fe116-15cb-41cd-b275-d1267b8a89ca"
       }
     ],
     "_id": "e1DUR7B5VMm7FtYJXS+vtd"
+  },
+  {
+    "__type__": "cc.RigidBody",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 100
+    },
+    "_enabled": true,
+    "_type": 0,
+    "_allowSleep": false,
+    "_gravityScale": 1,
+    "_linearDamping": 0,
+    "_angularDamping": 0,
+    "_linearVelocity": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "_angularVelocity": 0,
+    "_fixedRotation": false,
+    "enabledContactListener": true,
+    "bullet": false,
+    "awakeOnLoad": true,
+    "_id": "67a/Ky6E1H4qucg85B3hiP"
+  },
+  {
+    "__type__": "cc.PhysicsBoxCollider",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 100
+    },
+    "_enabled": true,
+    "tag": 0,
+    "_density": 1,
+    "_sensor": false,
+    "_friction": 0.2,
+    "_restitution": 0,
+    "body": null,
+    "_offset": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "_size": {
+      "__type__": "cc.Size",
+      "width": 32,
+      "height": 32
+    },
+    "_id": "26KjC7XYpI5adXalhUC2cw"
   }
 ]
