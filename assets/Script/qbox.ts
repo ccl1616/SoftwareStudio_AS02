@@ -42,11 +42,12 @@ export default class qbox extends cc.Component {
                 if(this.isOn){
                     this.adder = 0;
                     this.cnt = 0;
+                    // shake the box
                     let action = cc.sequence( cc.moveBy(0.05,0,5),cc.moveBy(0.05,0,-5) );
                     this.node.runAction(action);
                     this.isOn = false;
                     var coin = cc.find("coin");
-                    
+                    // coin and score
                     let action2 = cc.sequence( cc.moveBy(0.5,0,40),cc.hide());
                     coin.runAction(action2);
                     this.scheduleOnce( function() { coin.destroy(); } , 2);
