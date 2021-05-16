@@ -1,68 +1,54 @@
-// Learn TypeScript:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/typescript.html
-//  - [English] http://www.cocos2d-x.org/docs/creator/manual/en/scripting/typescript.html
-// Learn Attribute:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/reference/attributes.html
-//  - [English] http://www.cocos2d-x.org/docs/creator/manual/en/scripting/reference/attributes.html
-// Learn life-cycle callbacks:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
-//  - [English] http://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
-
 const {ccclass, property} = cc._decorator;
 
 @ccclass
 export default class coin extends cc.Component {
 
-    @property(cc.SpriteFrame)
-    coin1: cc.SpriteFrame = null;
-    @property(cc.SpriteFrame)
-    coin2: cc.SpriteFrame = null;
-    @property(cc.SpriteFrame)
-    coin3: cc.SpriteFrame = null;
+    private cnt: number = 0;
+
+    private isOn: boolean = true;
+
+    private adder: number = 0;
+
     
-    
-    private tmp: number = 0;
+    @property(cc.SpriteFrame)
+    cionSprite: cc.SpriteFrame = null;
 
     onLoad () {
-        this.getComponent(cc.Sprite).spriteFrame == this.coin1;
-        this.tmp = 0;
+        this.adder = 1;
+    }
+
+    start () {
         this.animation();
     }
 
-    start() {
-        this.getComponent(cc.Sprite).spriteFrame == this.coin1;
-        // this.counter = 0;
-        this.animation();
+    private animation() {
+        this.schedule(function(){
+            // cnt run 1~4
+            // var id = this.cnt % 5;
+            this.getComponent(cc.Sprite).spriteFrame = this.qbox_animation[this.cnt];
+            if(this.cnt == 4)
+                this.cnt = 1;
+            else this.cnt += this.adder;
+        }, 0.2);
+    }
+    update (dt) { 
+        // this.animation();
     }
 
-    update (dt) {
-        /*
-        cc.log(this.counter);
-        if(this.counter == 2) this.counter = 0;
-        else this.counter ++;
-        cc.log(this.counter%4);
-        this.animation(); */
+    onBeginContact(contact, self, other) {
+        if(other.node.name == "Player") {
+            if(contact.getWorldManifold().normal.y == -1){
+                // head hit qbox
+                this.adder = 0;
+                this.cnt = 0;
+                if(this.isOn){
+                    let action = cc.sequence( cc.moveBy(0.05,0,5),cc.moveBy(0.05,0,-5) );
+                    this.node.runAction(action);
+                    this.isOn = false;
+                }
+            }
+        }
+        // else this.animation();
     }
-
-    private animation(){
-        this.schedule( function(){
-
-            if(this.tmp %3 ==  0)
-            this.getComponent(cc.Sprite).spriteFrame == this.coin1;
-            else if(this.tmp %3 == 1)
-                this.getComponent(cc.Sprite).spriteFrame == this.coin2;
-            else 
-                this.getComponent(cc.Sprite).spriteFrame == this.coin3;
-
-            this.tmp ++;
-        } , 0.3 );
-        // cc.log(this.counter);
-        /*
-        if(this.counter == 0)
-            this.getComponent(cc.Sprite).spriteFrame == this.coin1;
-        else if(this.counter == 1)
-            this.getComponent(cc.Sprite).spriteFrame == this.coin2;
-        else 
-            this.getComponent(cc.Sprite).spriteFrame == this.coin3; */
-    }
+    
 }

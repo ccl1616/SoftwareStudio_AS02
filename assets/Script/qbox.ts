@@ -11,6 +11,7 @@ export default class qbox extends cc.Component {
 
     @property([cc.SpriteFrame])
     public qbox_animation: cc.SpriteFrame[] = [];
+    
 
     onLoad () {
         this.adder = 1;
