@@ -60,7 +60,7 @@ export default class qbox_m extends cc.Component {
 
     private createMushroom() {
         let mm = cc.instantiate(this.mushroomPrefab);
-        cc.log(mm);
+        // cc.log(mm);
         mm.getComponent('mushroom').init(this.node);
     }
     

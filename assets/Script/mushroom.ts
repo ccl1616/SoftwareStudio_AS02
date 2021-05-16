@@ -28,8 +28,10 @@ export default class mushroom extends cc.Component {
     private setInitPos(node: cc.Node)
     {
         this.node.parent = node.parent; // don't mount under the player, otherwise it will change direction when player move
-        this.node.position = cc.v2(0,30);
+        this.node.position = cc.v2(-10,0);
         this.node.position = this.node.position.addSelf(node.position);
+        let action = cc.moveBy(0.2,0,32);
+        this.node.runAction(action);
     }
 
     //make the bullet move from current position
