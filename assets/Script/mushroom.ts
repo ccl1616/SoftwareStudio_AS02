@@ -29,17 +29,16 @@ export default class green_mushroom extends cc.Component {
                 let action = cc.fadeOut(0.5);
                 this.node.runAction(action);
             },0.3);
+            var player = cc.find("Player");
             this.scheduleOnce(function(){ 
                 this.node.destroy(); 
-                var player = cc.find("Player");
-                /*
-                player.setContentSize(57,78); //57, 78
-                player.getComponent(cc.PhysicsBoxCollider).size.width = 57;
-                player.getComponent(cc.PhysicsBoxCollider).size.height = 78;
-                player.position.y = 70; dont use this */
+                
                 let action = cc.scaleBy(1, 57/38, 78/52);
-                player.runAction(action);
+                let action2 = cc.scaleBy(10, 38/57, 52/78);
+                let action_s = cc.sequence(action, action2);
+                player.runAction(action_s);
             } , 1 );
+            
         }
         else if(other.node.name == "ground"){
             if(this.is_first_time){
