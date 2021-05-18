@@ -95,11 +95,11 @@ export default class Player extends cc.Component
 
         // Method I: Apply Force to rigidbody
         if(this.node.width == 38)
-            this.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(0, 100000), true);
+            this.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(0, 150000), true);
         else 
-            this.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(0, 50000), true);
-
+        this.getComponent(cc.RigidBody).linearVelocity = cc.v2(0, 1500);
         // Method II: Change velocity of rigidbody
+        // if(this.node.width != 38)
         // this.getComponent(cc.RigidBody).linearVelocity = cc.v2(0, 1500);
     }
     /*

@@ -37,7 +37,7 @@ export default class green_mushroom extends cc.Component {
                 player.getComponent(cc.PhysicsBoxCollider).size.width = 57;
                 player.getComponent(cc.PhysicsBoxCollider).size.height = 78;
                 player.position.y = 70; dont use this */
-                let action = cc.scaleBy(1, 53/38, 72/52);
+                let action = cc.scaleBy(1, 57/38, 78/52);
                 player.runAction(action);
             } , 1 );
         }
