@@ -72,7 +72,7 @@ export default class Player extends cc.Component
             this.node.position = cc.v2(200, 62);
             this.isDead = false;
             return; */
-            cc.director.loadScene("stage1");
+            cc.director.loadScene("stage2");
         }
 
         if(this.zDown){

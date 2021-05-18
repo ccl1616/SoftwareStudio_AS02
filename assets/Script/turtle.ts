@@ -28,10 +28,9 @@ export default class turtle extends cc.Component {
     }
 
     update(dt) {
+
         this.animation();
-        if(this.isDead) {
-            this.destroy();
-        }
+        
     }
 
     public resetPos() {
@@ -42,14 +41,12 @@ export default class turtle extends cc.Component {
 
     onBeginContact(contact, self, other) {
         if(other.node.name == "left_wall") {
-            if(this.isStepped){
-                this.scheduleOnce(function() { self.node.destroy(); cc.log("killed"); }, 0.1);
-            }
-            else {
+            
+            {
                 // cc.log("hit leftBound");
                 this.node.scaleX = -1;
                 this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(-1*this.speed, 0);
-            }
+            } 
         } else if(other.node.name == "block" || other.node.name == "tube") {
             this.node.scaleX = 1;
             this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.speed, 0);
@@ -63,11 +60,16 @@ export default class turtle extends cc.Component {
                 this.speed = 0;
                 this.isStepped = true;
                 this.scheduleOnce(function() { 
-                    this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(-180, 0);
+                    if(this.node.scaleX == -1)
+                        this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(-500, 0);
+                    else this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(500, 0);
+                    this.scheduleOnce(function() { 
+                        self.node.destroy(); 
+                    }, 0.2);
                 }, 0.1);
             }
             else {
-                cc.log("horizontal or head");
+                // cc.log("horizontal or head");
                 // minus life
                 contact.disabled = true;
             } 
