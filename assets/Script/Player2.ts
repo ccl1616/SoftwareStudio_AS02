@@ -149,7 +149,9 @@ export default class Player extends cc.Component
         } else if(other.node.name == "coin"){
             cc.log("hit coin");
         }
-        else if(other.node.name == "bridge"){
+        else if(other.node.name == "bridge" ){
+            this.onGround = true;
+        } else if(other.node.name == "bridge_ghost"){
             this.onGround = true;
         } else if(other.node.name == "Enemy") {
             cc.log("Mario hits the enemy");
