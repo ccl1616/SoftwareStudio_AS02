@@ -164,7 +164,7 @@ export default class Player extends cc.Component
             cc.log("Mario hits hell");
             this.isDead = true;
         }
-        else if(other.node.name == "left_wall") {
+        else if(other.node.name == "left_wall" || other.node.name == "right_wall") {
             contact.disabled = true;
         }
     }

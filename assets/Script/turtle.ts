@@ -47,7 +47,7 @@ export default class turtle extends cc.Component {
                 this.node.scaleX = -1;
                 this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(-1*this.speed, 0);
             } 
-        } else if(other.node.name == "block" || other.node.name == "tube") {
+        } else if(other.node.name == "right_wall" || other.node.name == "tube" ) {
             this.node.scaleX = 1;
             this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.speed, 0);
         } else if(other.node.name == "Player") {
