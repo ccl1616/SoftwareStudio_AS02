@@ -123,7 +123,7 @@ export default class Player extends cc.Component
         if(other.node.name == "ground" || other.node.name == "cube" || other.node.name == "cube_left") {
             // cc.log("Mario hits the ground");
             this.onGround = true;
-        } else if(other.node.name == "tube1") {
+        } else if(other.node.name == "tube1" || other.node.name == "tube2" || other.node.name == "tube3") {
             this.onGround = true;
         }
         else if(other.node.name == "block") {
