@@ -120,10 +120,12 @@ export default class Player extends cc.Component
     }
 
     onBeginContact(contact, self, other) {
-        if(other.node.name == "ground" || other.node.name == "tube" || other.node.name == "cube" || other.node.name == "cube_left") {
-            cc.log("Mario hits the ground");
+        if(other.node.name == "ground" || other.node.name == "cube" || other.node.name == "cube_left") {
+            // cc.log("Mario hits the ground");
             this.onGround = true;
-        } 
+        } else if(other.node.name == "tube1") {
+            this.onGround = true;
+        }
         else if(other.node.name == "block") {
             // cc.log( "x:" + contact.getWorldManifold().normal.x );
             // cc.log( "y:" + contact.getWorldManifold().normal.y );
