@@ -11,20 +11,17 @@
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export default class NewClass extends cc.Component {
-
-    @property(cc.Label)
-    label: cc.Label = null;
-
-    @property
-    text: string = 'hello';
+export default class floating_block extends cc.Component {
 
     // LIFE-CYCLE CALLBACKS:
 
     // onLoad () {}
 
     start () {
-
+        // let action1 = cc.moveBy(2,250,100);
+        // let action2 = cc.moveBy(2,-250,-100);
+        let action = cc.sequence( cc.moveBy(2,100,50),cc.moveBy(2,-100,-50) );
+        this.node.runAction(action.repeatForever() );
     }
 
     // update (dt) {}
