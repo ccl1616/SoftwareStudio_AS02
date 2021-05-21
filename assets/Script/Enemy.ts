@@ -18,6 +18,8 @@ export default class Enemy extends cc.Component {
     aliveSprite: cc.SpriteFrame = null;
     @property(cc.SpriteFrame)
     deadSprite: cc.SpriteFrame = null;
+    @property(cc.Node)
+    gameMgr: cc.Node = null;
 
     private rebornPos = null;
 
@@ -73,6 +75,7 @@ export default class Enemy extends cc.Component {
                 this.speed = 0;
                 contact.disabled = true;
                 this.isStepped = true;
+                this.gameMgr.getComponent("GameMgr").playKickEffect();
                 this.scheduleOnce(function() { self.node.destroy(); cc.log("killed"); }, 0.1);
             }
             else {

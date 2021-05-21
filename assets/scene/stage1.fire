@@ -184,6 +184,9 @@
     "kick": {
       "__uuid__": "fa6ba6ed-858a-4ad5-9c8b-c189a5638fed"
     },
+    "stomp": {
+      "__uuid__": "b5c11f8c-6456-423b-8170-da2750a4fda5"
+    },
     "_id": "d1E4kp1dRE25OuiW2OG/wY"
   },
   {
@@ -448,7 +451,7 @@
       "array": [
         0,
         0,
-        396.63963493327293,
+        499.0877338715852,
         0,
         0,
         0,
@@ -4756,6 +4759,9 @@
     },
     "deadSprite": {
       "__uuid__": "093b5207-c3d8-4fd8-8b47-ee538efe9b48"
+    },
+    "gameMgr": {
+      "__id__": 2
     },
     "_id": "b6PToz02RBWKYUw8iNYIzH"
   },

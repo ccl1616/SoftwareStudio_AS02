@@ -61,7 +61,7 @@ export default class turtle extends cc.Component {
                 contact.disabled = true;
                 this.speed = 0;
                 this.isStepped = true;
-                this.gameMgr.getComponent("GameMgr").playKickEffect();
+                this.gameMgr.getComponent("GameMgr").playStompEffect();
                 this.scheduleOnce(function() { 
                     if(this.node.scaleX == -1)
                         this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(-500, 0);

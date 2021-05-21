@@ -28,6 +28,9 @@ export default class GameManager extends cc.Component {
     @property({type:cc.AudioClip})
     kick: cc.AudioClip = null;
 
+    @property({type:cc.AudioClip})
+    stomp: cc.AudioClip = null;
+
     onLoad () {
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         // this.playBGM();
@@ -62,5 +65,8 @@ export default class GameManager extends cc.Component {
     }
     playKickEffect(){
         cc.audioEngine.playEffect(this.kick, false);
+    }
+    playStompEffect(){
+        cc.audioEngine.playEffect(this.stomp, false);
     }
 }
