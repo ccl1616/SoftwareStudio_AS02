@@ -16,10 +16,20 @@ export default class GameManager extends cc.Component {
     @property({type:cc.AudioClip})
     bgm: cc.AudioClip = null;
 
+    @property({type:cc.AudioClip})
+    jumpSound: cc.AudioClip = null;
+
     onLoad () {
+        cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         this.playBGM();
     }
     
+    onKeyDown(event) {
+        if(event.keyCode == cc.macro.KEY.k){
+            this.playEffect();
+        }
+    }
+
     start () {
         // this.playBGM();
     }
@@ -31,5 +41,8 @@ export default class GameManager extends cc.Component {
     }
     stopBGM(){
         cc.audioEngine.pauseMusic();
+    }
+    playEffect(){
+        cc.audioEngine.playEffect(this.jumpSound, false);
     }
 }
