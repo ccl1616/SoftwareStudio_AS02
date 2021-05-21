@@ -34,6 +34,9 @@ export default class GameManager extends cc.Component {
     @property({type:cc.AudioClip})
     powerup: cc.AudioClip = null;
 
+    @property({type:cc.AudioClip})
+    powerdown: cc.AudioClip = null;
+
     onLoad () {
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         // this.playBGM();
@@ -74,5 +77,8 @@ export default class GameManager extends cc.Component {
     }
     playPowerupEffect(){
         cc.audioEngine.playEffect(this.powerup, false);
+    }
+    playPowerdownEffect(){
+        cc.audioEngine.playEffect(this.powerdown, false);
     }
 }
