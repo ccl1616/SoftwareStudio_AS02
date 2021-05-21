@@ -154,7 +154,9 @@
     "jumpSound": {
       "__uuid__": "3b2c16e7-a6bb-4de2-bb7a-8442a9500067"
     },
-    "loseOneLife": null,
+    "loseOneLife": {
+      "__uuid__": "5381aa17-7ae0-4197-a219-acce397dcadd"
+    },
     "_id": "37rcIDWOpEWIGLD//nDHkH"
   },
   {
@@ -304,7 +306,7 @@
       "array": [
         0,
         0,
-        552.5242076144718,
+        507.4908866176811,
         0,
         0,
         0,
@@ -4369,6 +4371,9 @@
     },
     "groundSprite": {
       "__uuid__": "d5a84466-0c9e-41cc-871d-2d4c00863360"
+    },
+    "gameMgr": {
+      "__id__": 2
     },
     "camera": {
       "__id__": 5
