@@ -10,6 +10,7 @@ export default class Player extends cc.Component
     @property(cc.Node)
     gameMgr: cc.Node = null;
 
+
     private playerSpeed: number = 0;
 
     private zDown: boolean = false; // key for player to go left
@@ -21,6 +22,7 @@ export default class Player extends cc.Component
     private kDown: boolean = false; // key for player to jump
 
     private isDead: boolean = false;
+    private isDead_pre: boolean = false;
 
     private onGround: boolean = false;
 
@@ -155,7 +157,14 @@ export default class Player extends cc.Component
                 this.isDead = true;
         } else if(other.node.name == "hell" || other.node.name == "left_bond") {
             cc.log("Mario hits hell");
-            this.isDead = true;
+            if(!this.isDead_pre){
+                this.isDead_pre = true;
+                this.gameMgr.getComponent("GameMgr").playLoseOneEffect();
+                this.scheduleOnce(function(){
+                    this.isDead = true;
+                },2);
+            }
+            // this.isDead = true;
         }
         else if(other.node.name == "left_wall" || other.node.name == "right_wall") {
             contact.disabled = true;
