@@ -31,6 +31,9 @@ export default class GameManager extends cc.Component {
     @property({type:cc.AudioClip})
     stomp: cc.AudioClip = null;
 
+    @property({type:cc.AudioClip})
+    powerup: cc.AudioClip = null;
+
     onLoad () {
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         // this.playBGM();
@@ -68,5 +71,8 @@ export default class GameManager extends cc.Component {
     }
     playStompEffect(){
         cc.audioEngine.playEffect(this.stomp, false);
+    }
+    playPowerupEffect(){
+        cc.audioEngine.playEffect(this.powerup, false);
     }
 }

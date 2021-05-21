@@ -10,6 +10,9 @@ export default class green_mushroom extends cc.Component {
     
     private is_first_time: boolean = true;
 
+    @property(cc.Node)
+    gameMgr: cc.Node = null;
+
     onLoad() {
         cc.director.getPhysicsManager().enabled = true;
         this.getComponent(cc.RigidBody).type = cc.RigidBodyType.Static;
@@ -32,7 +35,7 @@ export default class green_mushroom extends cc.Component {
             var player = cc.find("Player");
             this.scheduleOnce(function(){ 
                 this.node.destroy(); 
-                
+                this.gameMgr.getComponent("GameMgr").playPowerupEffect();
                 let action = cc.scaleBy(1, 57/38, 78/52);
                 let action2 = cc.scaleBy(10, 38/57, 52/78);
                 let action_s = cc.sequence(action, action2);

@@ -187,6 +187,9 @@
     "stomp": {
       "__uuid__": "b5c11f8c-6456-423b-8170-da2750a4fda5"
     },
+    "powerup": {
+      "__uuid__": "f8259971-51d7-4aa4-bacf-6087d47d3d13"
+    },
     "_id": "d1E4kp1dRE25OuiW2OG/wY"
   },
   {
@@ -4455,8 +4458,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        520.754,
-        75.458,
+        1337.018,
+        55.171,
         0,
         0,
         0,
@@ -5633,6 +5636,9 @@
         "__uuid__": "15486a82-c3f9-4f32-90b7-4e872231cae0"
       }
     ],
+    "gameMgr": {
+      "__id__": 2
+    },
     "_id": "32ChpUQaJPU5URAw2pnrZI"
   },
   {
