@@ -102,11 +102,6 @@ export default class Player extends cc.Component
         // if(this.node.width != 38)
         // this.getComponent(cc.RigidBody).linearVelocity = cc.v2(0, 1500);
     }
-    /*
-    private createBullet() {
-        let bullet = cc.instantiate(this.bulletPrefab);
-        bullet.getComponent('Bullet_ans').init(this.node);
-    }*/
     private animation() {
         if(this.onGround && !this.isDead)
             this.getComponent(cc.Sprite).spriteFrame = this.groundSprite;
