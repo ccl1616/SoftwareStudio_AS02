@@ -7,6 +7,8 @@ export default class Player extends cc.Component
     jumpSprite: cc.SpriteFrame = null;
     @property(cc.SpriteFrame)
     groundSprite: cc.SpriteFrame = null;
+    @property(cc.Node)
+    gameMgr: cc.Node = null;
 
     private playerSpeed: number = 0;
 
@@ -66,6 +68,8 @@ export default class Player extends cc.Component
             this.node.position = cc.v2(200, 62);
             this.isDead = false;
             return; */
+            // this.gameMgr.getComponent("GameMgr").playLoseOneEffect();
+            
             cc.director.loadScene("stage1");
         }
 

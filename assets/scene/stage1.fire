@@ -101,7 +101,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "GameManager",
+    "_name": "GameMgr",
     "_objFlags": 0,
     "_parent": {
       "__id__": 1
@@ -174,6 +174,9 @@
     },
     "jumpSound": {
       "__uuid__": "3b2c16e7-a6bb-4de2-bb7a-8442a9500067"
+    },
+    "loseOneLife": {
+      "__uuid__": "5381aa17-7ae0-4197-a219-acce397dcadd"
     },
     "_id": "d1E4kp1dRE25OuiW2OG/wY"
   },
@@ -4515,6 +4518,9 @@
     },
     "groundSprite": {
       "__uuid__": "d5a84466-0c9e-41cc-871d-2d4c00863360"
+    },
+    "gameMgr": {
+      "__id__": 2
     },
     "camera": {
       "__id__": 7
