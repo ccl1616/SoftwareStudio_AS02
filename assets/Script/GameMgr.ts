@@ -39,7 +39,7 @@ export default class GameManager extends cc.Component {
 
     onLoad () {
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
-        // this.playBGM();
+        this.playBGM();
     }
     
     onKeyDown(event) {
