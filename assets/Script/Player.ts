@@ -47,10 +47,6 @@ export default class Player extends cc.Component
         } else if(event.keyCode == cc.macro.KEY.k) {
             this.kDown = true;
         } 
-        /* else if(event.keyCode == cc.KEY.j) {
-            this.jDown = true;
-            this.createBullet();
-        }*/
     }
     
     onKeyUp(event) {
@@ -58,8 +54,6 @@ export default class Player extends cc.Component
             this.zDown = false;
         else if(event.keyCode == cc.macro.KEY.x)
             this.xDown = false;
-        /* else if(event.keyCode == cc.KEY.j)
-            this.jDown = false; */
         else if(event.keyCode == cc.macro.KEY.k)
             this.kDown = false;
     }

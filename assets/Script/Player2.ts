@@ -47,10 +47,6 @@ export default class Player extends cc.Component
         } else if(event.keyCode == cc.macro.KEY.k) {
             this.kDown = true;
         } 
-        /* else if(event.keyCode == cc.KEY.j) {
-            this.jDown = true;
-            this.createBullet();
-        }*/
     }
     
     onKeyUp(event) {
@@ -58,8 +54,6 @@ export default class Player extends cc.Component
             this.zDown = false;
         else if(event.keyCode == cc.macro.KEY.x)
             this.xDown = false;
-        /* else if(event.keyCode == cc.KEY.j)
-            this.jDown = false; */
         else if(event.keyCode == cc.macro.KEY.k)
             this.kDown = false;
     }
@@ -102,11 +96,7 @@ export default class Player extends cc.Component
         // if(this.node.width != 38)
         // this.getComponent(cc.RigidBody).linearVelocity = cc.v2(0, 1500);
     }
-    /*
-    private createBullet() {
-        let bullet = cc.instantiate(this.bulletPrefab);
-        bullet.getComponent('Bullet_ans').init(this.node);
-    }*/
+    
     private animation() {
         if(this.onGround && !this.isDead)
             this.getComponent(cc.Sprite).spriteFrame = this.groundSprite;
