@@ -29,7 +29,6 @@ export default class Player extends cc.Component
     private debug: boolean = true;
 
     private anim = null;
-    private animateState = null; //this will use to record animationState
 
     @property(cc.Node)
     camera: cc.Node = null;
@@ -38,11 +37,11 @@ export default class Player extends cc.Component
     map: cc.Node = null;
 
     onLoad() {
-        this.anim = this.getComponent(cc.Animation);
         cc.director.getPhysicsManager().enabled = true;        	
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
-        this.anim.play('walk');
+        this.anim = this.getComponent(cc.Animation);
+        this.anim.play('idle');
     }
 
     onKeyDown(event) {
@@ -54,7 +53,6 @@ export default class Player extends cc.Component
             this.xDown = true;
             this.zDown = false;
         } else if(event.keyCode == cc.macro.KEY.k) {
-            this.anim.play('jump');
             this.kDown = true;
         } 
     }
@@ -67,8 +65,8 @@ export default class Player extends cc.Component
         else if(event.keyCode == cc.macro.KEY.k){
             this.kDown = false;
         }
-        if(!this.anim.getAnimationState('walk').isPlaying)
-            this.anim.play('walk');
+        if(this.anim.getAnimationState('walk').isPlaying)
+            this.anim.stop('walk');
     }
     
     private playerMovement(dt) {
@@ -112,12 +110,24 @@ export default class Player extends cc.Component
         // this.getComponent(cc.RigidBody).linearVelocity = cc.v2(0, 1500);
     }
     private animation() {
+        /*
         if(this.onGround && !this.isDead){
             this.getComponent(cc.Sprite).spriteFrame = this.groundSprite;
         }
         else {
             this.getComponent(cc.Sprite).spriteFrame = this.jumpSprite; 
+        } */
+
+        if(!this.anim.getAnimationState('walk').isPlaying){
+            if(this.zDown || this.xDown){
+                this.anim.play('walk');
+            }
+            else if(this.kDown)
+                this.anim.play('jump');
+            else this.anim.play('idle');
         }
+        else if(this.kDown)
+            this.anim.play('jump');
     }
     
     update(dt) {
