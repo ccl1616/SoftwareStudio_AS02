@@ -22,6 +22,12 @@ export default class GameManager extends cc.Component {
     @property({type:cc.AudioClip})
     loseOneLife: cc.AudioClip = null;
 
+    @property({type:cc.AudioClip})
+    coin: cc.AudioClip = null;
+
+    @property({type:cc.AudioClip})
+    kick: cc.AudioClip = null;
+
     onLoad () {
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         // this.playBGM();
@@ -50,5 +56,11 @@ export default class GameManager extends cc.Component {
     }
     playLoseOneEffect(){
         cc.audioEngine.playEffect(this.loseOneLife, false);
+    }
+    playCoinEffect(){
+        cc.audioEngine.playEffect(this.coin, false);
+    }
+    playKickEffect(){
+        cc.audioEngine.playEffect(this.kick, false);
     }
 }

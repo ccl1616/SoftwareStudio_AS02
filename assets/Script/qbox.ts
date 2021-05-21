@@ -9,8 +9,13 @@ export default class qbox extends cc.Component {
 
     private adder: number = 0;
 
+    // private isCoinOut: boolean = false;
+
     @property([cc.SpriteFrame])
     public qbox_animation: cc.SpriteFrame[] = [];
+    @property(cc.Node)
+    gameMgr: cc.Node = null;
+
 
     onLoad () {
         this.adder = 1;
@@ -40,14 +45,15 @@ export default class qbox extends cc.Component {
                 // cc.log(self.name);
                 // head hit qbox
                 if(this.isOn){
+                    this.isOn = false;
                     this.adder = 0;
                     this.cnt = 0;
                     // shake the box
                     let action = cc.sequence( cc.moveBy(0.05,0,5),cc.moveBy(0.05,0,-5) );
                     this.node.runAction(action);
-                    this.isOn = false;
                     var coin = cc.find("coin");
                     // coin and score
+                    this.gameMgr.getComponent("GameMgr").playCoinEffect();
                     let action2 = cc.sequence( cc.moveBy(0.5,0,40),cc.hide());
                     coin.runAction(action2);
                     this.scheduleOnce( function() { coin.destroy(); } , 2);

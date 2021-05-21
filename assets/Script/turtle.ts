@@ -8,6 +8,8 @@ export default class turtle extends cc.Component {
     aliveSprite: cc.SpriteFrame = null;
     @property(cc.SpriteFrame)
     deadSprite: cc.SpriteFrame = null;
+    @property(cc.Node)
+    gameMgr: cc.Node = null;
 
     private rebornPos = null;
 
@@ -59,6 +61,7 @@ export default class turtle extends cc.Component {
                 contact.disabled = true;
                 this.speed = 0;
                 this.isStepped = true;
+                this.gameMgr.getComponent("GameMgr").playKickEffect();
                 this.scheduleOnce(function() { 
                     if(this.node.scaleX == -1)
                         this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(-500, 0);

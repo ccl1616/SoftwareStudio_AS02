@@ -178,6 +178,12 @@
     "loseOneLife": {
       "__uuid__": "5381aa17-7ae0-4197-a219-acce397dcadd"
     },
+    "coin": {
+      "__uuid__": "a34e7f33-5be6-4987-b877-07bee30a8aa6"
+    },
+    "kick": {
+      "__uuid__": "fa6ba6ed-858a-4ad5-9c8b-c189a5638fed"
+    },
     "_id": "d1E4kp1dRE25OuiW2OG/wY"
   },
   {
@@ -442,7 +448,7 @@
       "array": [
         0,
         0,
-        552.5242076144718,
+        396.63963493327293,
         0,
         0,
         0,
@@ -1266,8 +1272,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -459.894,
-        -278.562,
+        -502.765,
+        -301.529,
         0,
         0,
         0,
@@ -1337,8 +1343,8 @@
     },
     "_size": {
       "__type__": "cc.Size",
-      "width": 10,
-      "height": 90
+      "width": 20,
+      "height": 20
     },
     "_id": "fdkmvKM6JDiYf5t6gBHYn7"
   },
@@ -4923,6 +4929,9 @@
     "deadSprite": {
       "__uuid__": "6fb93793-5909-4c01-b08e-f1a6bbad2ef1"
     },
+    "gameMgr": {
+      "__id__": 2
+    },
     "_id": "5bwxXweWNARrZkBWqmQ0PX"
   },
   {
@@ -5390,6 +5399,9 @@
       },
       null
     ],
+    "gameMgr": {
+      "__id__": 2
+    },
     "_id": "e1DUR7B5VMm7FtYJXS+vtd"
   },
   {

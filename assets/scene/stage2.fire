@@ -157,6 +157,12 @@
     "loseOneLife": {
       "__uuid__": "5381aa17-7ae0-4197-a219-acce397dcadd"
     },
+    "coin": {
+      "__uuid__": "a34e7f33-5be6-4987-b877-07bee30a8aa6"
+    },
+    "kick": {
+      "__uuid__": "fa6ba6ed-858a-4ad5-9c8b-c189a5638fed"
+    },
     "_id": "37rcIDWOpEWIGLD//nDHkH"
   },
   {
@@ -306,7 +312,7 @@
       "array": [
         0,
         0,
-        507.4908866176811,
+        396.63963493327293,
         0,
         0,
         0,
@@ -4187,6 +4193,9 @@
     "deadSprite": {
       "__uuid__": "6fb93793-5909-4c01-b08e-f1a6bbad2ef1"
     },
+    "gameMgr": {
+      "__id__": 2
+    },
     "_id": "28PJOofT5JN5vWuEJyPKIs"
   },
   {
@@ -4248,7 +4257,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        1709.86,
+        763.734,
         97.443,
         0,
         0,
