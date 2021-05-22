@@ -30,6 +30,8 @@ export default class Player extends cc.Component
 
     private anim = null;
 
+    private big_mario: boolean = false;
+
     @property(cc.Node)
     camera: cc.Node = null;
 
@@ -172,6 +174,21 @@ export default class Player extends cc.Component
             cc.log("Mario hits the enemy");
             // this.onGround = true;
             // this.isDead = true;
+        } else if(other.node.name == "green_mushroom"){
+            cc.log("hit green_mushroom");
+            if(!this.big_mario){
+                this.scheduleOnce(function(){
+                    this.gameMgr.getComponent("GameMgr").playPowerupEffect();
+                    this.big_mario = true;
+                    let action = cc.scaleBy(1, 48/38, 66/52);
+                    this.node.runAction(action);
+                },1);
+                this.scheduleOnce(function(){
+                    this.gameMgr.getComponent("GameMgr").playPowerdownEffect();
+                    let action = cc.scaleBy(1, 38/48, 52/66);
+                    this.node.runAction(action);
+                },6);
+            }
         } else if(other.node.name == "flower") {
             cc.log("Mario hits the folwer");
             // this.onGround = true;

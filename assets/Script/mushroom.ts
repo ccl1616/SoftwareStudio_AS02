@@ -35,12 +35,6 @@ export default class green_mushroom extends cc.Component {
             var player = cc.find("Player");
             this.scheduleOnce(function(){ 
                 this.node.destroy(); 
-                this.gameMgr.getComponent("GameMgr").playPowerupEffect();
-                // this.gameMgr.getComponent("GameMgr").playPowerdownEffect();
-                let action = cc.scaleBy(1, 57/38, 78/52);
-                let action2 = cc.scaleBy(10, 38/57, 52/78);
-                let action_s = cc.sequence(action, action2);
-                player.runAction(action_s);
             } , 1 );
         }
         else if(other.node.name == "ground"){
