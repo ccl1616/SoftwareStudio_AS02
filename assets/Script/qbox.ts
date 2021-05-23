@@ -9,6 +9,8 @@ export default class qbox extends cc.Component {
 
     private adder: number = 0;
 
+    private temp: number = 0;
+
     // private isCoinOut: boolean = false;
 
     @property([cc.SpriteFrame])
@@ -52,7 +54,7 @@ export default class qbox extends cc.Component {
                     let action = cc.sequence( cc.moveBy(0.05,0,5),cc.moveBy(0.05,0,-5) );
                     this.node.runAction(action);
                     var coin = cc.find("coin");
-                    // coin and score
+                    this.gameMgr.getComponent("GameMgr").add_coin();
                     this.gameMgr.getComponent("GameMgr").playCoinEffect();
                     let action2 = cc.sequence( cc.moveBy(0.5,0,40),cc.hide());
                     coin.runAction(action2);
