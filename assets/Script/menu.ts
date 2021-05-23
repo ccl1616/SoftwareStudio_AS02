@@ -12,16 +12,21 @@ const {ccclass, property} = cc._decorator;
 
 @ccclass
 export default class menu extends cc.Component {
-
+    world1(){
+        cc.director.loadScene("stage1");
+    }
+    world2(){
+        cc.director.loadScene("stage2");
+    }
 
     start () {
         let left = cc.find("left_btn");
         let right = cc.find("right_btn");
         left.on( cc.Node.EventType.MOUSE_DOWN, function(event){
-            cc.log("left outside") }, this );
+            this.world1() }, this );
         
         right.on( cc.Node.EventType.MOUSE_DOWN, function(event){
-            cc.log("right outside") }, this );
+            this.world2() }, this );
     }
 
     // update (dt) {}

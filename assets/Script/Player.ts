@@ -121,8 +121,10 @@ export default class Player extends cc.Component
         } */
 
         if(!this.anim.getAnimationState('walk').isPlaying){
-            if(this.zDown || this.xDown){
-                this.anim.play('walk');
+            if(!this.kDown){
+                if(this.zDown || this.xDown){
+                    this.anim.play('walk');
+                }
             }
             else if(this.kDown)
                 this.anim.play('jump');
