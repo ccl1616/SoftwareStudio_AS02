@@ -39,10 +39,12 @@ export default class GameManager extends cc.Component {
 
     private coin_num: number = 0;
     private score: number = 0;
+    private debug: boolean = true;
 
     onLoad () {
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
-        // this.playBGM();
+        if(!this.debug)
+            this.playBGM();
     }
     
     onKeyDown(event) {
