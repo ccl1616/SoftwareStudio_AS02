@@ -35,8 +35,6 @@ export default class Player extends cc.Component
     @property(cc.Node)
     camera: cc.Node = null;
 
-    @property(cc.Node)
-    map: cc.Node = null;
 
     onLoad() {
         cc.director.getPhysicsManager().enabled = true;        	
