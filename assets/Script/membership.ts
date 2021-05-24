@@ -13,15 +13,30 @@ const {ccclass, property} = cc._decorator;
 @ccclass
 export default class membership extends cc.Component {
 
+    @property(cc.Node)
+    left_btn: cc.Node = null;
+    @property(cc.Node)
+    right_btn: cc.Node = null;
 
+    @property(cc.Node)
+    email_node: cc.Node = null;
+    @property(cc.Node)
+    password_node: cc.Node = null;
+    @property(cc.Node)
+    warning: cc.Node = null;
+    
     start () {
-        let left = cc.find("left_btn");
-        let right = cc.find("right_btn");
-        left.on( cc.Node.EventType.MOUSE_DOWN, function(event){
-            cc.log("left outside") }, this );
+        this.left_btn.on( cc.Node.EventType.MOUSE_DOWN, function(event){
+            // cc.log("left btn click");
+            cc.log(this.email_node.getComponent(cc.EditBox).string); 
+            // this.warning.getComponent(cc.Label).string = this.email_node.getComponent(cc.EditBox).string;
+        }, this );
         
-        right.on( cc.Node.EventType.MOUSE_DOWN, function(event){
-            cc.log("right outside") }, this );
+        this.right_btn.on( cc.Node.EventType.MOUSE_DOWN, function(event){
+            // cc.log("right btn click");
+            cc.log(this.password_node.getComponent(cc.EditBox).string);  
+        }, this );
+
     }
 
     // update (dt) {}
