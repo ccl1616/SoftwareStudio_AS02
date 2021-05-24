@@ -196,6 +196,13 @@ export default class Player extends cc.Component
             // this.onGround = true;
             if(!this.debug)
                 this.isDead = true;
+        } else if(other.node.name == "flag_collider") {
+            cc.log("Mario hits flag");
+            this.levelclear = true;
+            this.gameMgr.getComponent("GameMgr").playLevelclearEffect();
+            this.scheduleOnce(function(){
+                cc.director.loadScene("menu");
+            },3.5);
         } else if(other.node.name == "hell" || other.node.name == "left_bond") {
             cc.log("Mario hits hell");
             if(!this.isDead_pre){

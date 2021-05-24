@@ -29,6 +29,8 @@ export default class Player extends cc.Component
 
     private anim = null;
 
+    private levelclear: boolean = false;
+
     @property(cc.Node)
     camera: cc.Node = null;
 
@@ -79,18 +81,18 @@ export default class Player extends cc.Component
             cc.director.loadScene("stage2");
         }
 
-        if(this.zDown){
+        if(this.zDown && !this.levelclear){
             this.playerSpeed = -300;
             this.node.scaleX = -1;
         }
-        else if(this.xDown){
+        else if(this.xDown && !this.levelclear){
             this.playerSpeed = 300;
             this.node.scaleX = 1;
         }
         
         this.node.x += this.playerSpeed * dt;
 
-        if(this.kDown && this.onGround)
+        if(this.kDown && this.onGround && !this.levelclear)
             this.jump();
     }    
 
@@ -183,6 +185,13 @@ export default class Player extends cc.Component
                     this.isDead = true;
                 },2);
             }
+        } else if(other.node.name == "flag_collider") {
+            cc.log("Mario hits flag");
+            this.levelclear = true;
+            this.gameMgr.getComponent("GameMgr").playLevelclearEffect();
+            this.scheduleOnce(function(){
+                cc.director.loadScene("menu");
+            },3.5);
         }
         else if(other.node.name == "left_wall" || other.node.name == "right_wall") {
             contact.disabled = true;
