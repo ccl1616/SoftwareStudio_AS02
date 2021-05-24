@@ -485,7 +485,7 @@
       "array": [
         0,
         0,
-        395.7736095294885,
+        558.586385440963,
         0,
         0,
         0,
@@ -721,8 +721,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 55,
-      "height": 30
+      "width": 39,
+      "height": 21
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -733,7 +733,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -213.977,
+        -207.63,
         280,
         0,
         0,
