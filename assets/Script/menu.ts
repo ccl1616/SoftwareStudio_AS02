@@ -22,6 +22,7 @@ export default class menu extends cc.Component {
     user_info_node: cc.Node = null;
 
     private email: string;
+    private name: string;
 
     world1(){
         cc.director.loadScene("stage1");
@@ -36,12 +37,13 @@ export default class menu extends cc.Component {
             if(user){
                 cc.log("firebase: " + user.email);
                 self.email = user.email;
+                self.name = user.displayName;
             }
         });
     }
 
     start () {
-        // this.user_info_node.getComponent(cc.Label).string = this.email;
+        this.user_info_node.getComponent(cc.Label).string = this.name;
         // btn
         this.left_btn.on( cc.Node.EventType.MOUSE_DOWN, function(event){
             this.world1() }, this );

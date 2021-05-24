@@ -22,6 +22,7 @@ export default class membership extends cc.Component {
     email_node: cc.Node = null;
     @property(cc.Node)
     password_node: cc.Node = null;
+
     @property(cc.Node)
     warningbox: cc.Node = null;
     
@@ -52,7 +53,14 @@ export default class membership extends cc.Component {
             var info_password = this.password_node.getComponent(cc.EditBox).string;
             firebase.auth().createUserWithEmailAndPassword(info_email, info_password).then(function(result){
                 var user = result.user;
-                cc.log("sign up success");
+                var username = prompt("input your username:", "anonymous");
+                user.updateProfile({
+                    displayName: username
+                }).then(function(){
+                    // console.log(user.displayName);
+                })
+                cc.log("sign up success, " + user.displayName);
+
             }).catch(function(error){
                 cc.log("sign up error");
             });
