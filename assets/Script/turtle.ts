@@ -62,6 +62,7 @@ export default class turtle extends cc.Component {
                 this.speed = 0;
                 this.isStepped = true;
                 this.gameMgr.getComponent("GameMgr").playStompEffect();
+                other.onGround = true;
                 this.scheduleOnce(function() { 
                     if(this.node.scaleX == -1)
                         this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(-500, 0);
@@ -84,8 +85,12 @@ export default class turtle extends cc.Component {
     }
     
     private animation() {
-        if(this.isStepped)
-            this.getComponent(cc.Sprite).spriteFrame = this.deadSprite;
-        else this.getComponent(cc.Sprite).spriteFrame = this.aliveSprite;
+        if(this.isStepped){
+            this.getComponent(cc.Animation).play('turtle_stepped');
+            // this.getComponent(cc.Sprite).spriteFrame = this.deadSprite;
+        }
+        else {
+            this.getComponent(cc.Sprite).spriteFrame = this.aliveSprite;
+        }
     }
 }

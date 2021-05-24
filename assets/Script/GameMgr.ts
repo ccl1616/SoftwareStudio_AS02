@@ -37,6 +37,12 @@ export default class GameManager extends cc.Component {
     @property({type:cc.AudioClip})
     powerdown: cc.AudioClip = null;
 
+    @property({type:cc.AudioClip})
+    levelclear: cc.AudioClip = null;
+
+    @property({type:cc.AudioClip})
+    gameover: cc.AudioClip = null;
+
     private coin_num: number = 0;
     private score: number = 0;
     private debug: boolean = true;
@@ -85,6 +91,12 @@ export default class GameManager extends cc.Component {
     }
     playPowerdownEffect(){
         cc.audioEngine.playEffect(this.powerdown, false);
+    }
+    playLevelclearEffect(){
+        cc.audioEngine.playEffect(this.levelclear, false);
+    }
+    playGameoverEffect(){
+        cc.audioEngine.playEffect(this.gameover, false);
     }
 
     add_coin(){

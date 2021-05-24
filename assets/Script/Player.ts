@@ -32,6 +32,8 @@ export default class Player extends cc.Component
 
     private big_mario: boolean = false;
 
+    private levelclear: boolean = false;
+
     @property(cc.Node)
     camera: cc.Node = null;
 
@@ -82,18 +84,18 @@ export default class Player extends cc.Component
             cc.director.loadScene("stage1");
         }
 
-        if(this.zDown){
+        if(this.zDown && !this.levelclear){
             this.playerSpeed = -300;
             this.node.scaleX = -1;
         }
-        else if(this.xDown){
+        else if(this.xDown && !this.levelclear){
             this.playerSpeed = 300;
             this.node.scaleX = 1;
         }
         
         this.node.x += this.playerSpeed * dt;
 
-        if(this.kDown && this.onGround)
+        if(this.kDown && this.onGround && !this.levelclear)
             this.jump();
     }    
 
@@ -204,7 +206,7 @@ export default class Player extends cc.Component
                 },2);
             }
             // this.isDead = true;
-        }
+        } 
         else if(other.node.name == "left_wall" || other.node.name == "right_wall") {
             contact.disabled = true;
         }
