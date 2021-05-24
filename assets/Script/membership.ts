@@ -23,21 +23,50 @@ export default class membership extends cc.Component {
     @property(cc.Node)
     password_node: cc.Node = null;
     @property(cc.Node)
-    warning: cc.Node = null;
+    warningbox: cc.Node = null;
     
     start () {
+        // get input
+        var info_email = this.email_node.getComponent(cc.EditBox).string;
+        var info_password = this.password_node.getComponent(cc.EditBox).string;
+
+        // sign in btn
         this.left_btn.on( cc.Node.EventType.MOUSE_DOWN, function(event){
-            // cc.log("left btn click");
-            cc.log(this.email_node.getComponent(cc.EditBox).string); 
-            // this.warning.getComponent(cc.Label).string = this.email_node.getComponent(cc.EditBox).string;
+            // auth sign in
+            var info_email = this.email_node.getComponent(cc.EditBox).string;
+            var info_password = this.password_node.getComponent(cc.EditBox).string;
+            firebase.auth().signInWithEmailAndPassword(info_email, info_password).then(function(result) {
+                // window.location.href = "index.html";
+                cc.director.loadScene("menu");
+            }).catch(function(error) {
+                info_email = null;
+                info_password = null;
+                cc.log("sign in fail");
+            });
         }, this );
-        
+
+        // sign up btn
         this.right_btn.on( cc.Node.EventType.MOUSE_DOWN, function(event){
-            // cc.log("right btn click");
-            cc.log(this.password_node.getComponent(cc.EditBox).string);  
+            // auth create user
+            var info_email = this.email_node.getComponent(cc.EditBox).string;
+            var info_password = this.password_node.getComponent(cc.EditBox).string;
+            firebase.auth().createUserWithEmailAndPassword(info_email, info_password).then(function(result){
+                var user = result.user;
+                cc.log("sign up success");
+            }).catch(function(error){
+                cc.log("sign up error");
+            });
         }, this );
 
     }
 
     // update (dt) {}
+    sendValue(email,password){
+        var ref = firebase.database().ref('test');
+        var data = {
+            email: email,
+            pw: password
+        };
+        ref.push(data);
+    }
 }
