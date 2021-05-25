@@ -140,7 +140,6 @@ export default class gamemgr extends cc.Component {
 
     add_coin(){
         this.coin_num ++;
-        // this.dataget = true;
         this.update_firebase("coin",this.coin_num);
     }
     add_score(num){
