@@ -21,7 +21,7 @@ export default class Player extends cc.Component
     private kDown: boolean = false; // key for player to jump
 
     private isDead: boolean = false;
-    
+
     private isDead_pre: boolean = false;
     
     private onGround: boolean = false;
@@ -80,10 +80,12 @@ export default class Player extends cc.Component
             this.node.position = cc.v2(200, 62);
             this.isDead = false;
             return; */
-            cc.director.loadScene("stage2");
+            this.scheduleOnce(()=>{
+                cc.director.loadScene("stage2");
+            },2);
         }
 
-        if(this.zDown && !this.levelclear){
+        else if(this.zDown && !this.levelclear){
             this.playerSpeed = -300;
             this.node.scaleX = -1;
         }
@@ -91,11 +93,9 @@ export default class Player extends cc.Component
             this.playerSpeed = 300;
             this.node.scaleX = 1;
         }
-        
-        this.node.x += this.playerSpeed * dt;
-
-        if(this.kDown && this.onGround && !this.levelclear)
+        else if(this.kDown && this.onGround && !this.levelclear)
             this.jump();
+        this.node.x += this.playerSpeed * dt;
     }    
 
     private jump() {
@@ -177,9 +177,7 @@ export default class Player extends cc.Component
             // this.isDead = true;
         } else if(other.node.name == "flower") {
             cc.log("Mario hits the folwer");
-            // this.onGround = true;
-            if(!this.debug)
-                this.isDead = true;
+            this.die();
         } else if(other.node.name == "hell" || other.node.name == "left_bond") {
             cc.log("Mario hits hell");
             if(!this.isDead_pre){
@@ -247,4 +245,12 @@ export default class Player extends cc.Component
         }*/
     }
 
+    die(){
+        if(!this.isDead_pre){
+            this.isDead_pre = true;
+            this.gameMgr.getComponent("GameMgr").playLoseOneEffect();
+            this.gameMgr.getComponent("GameMgr").update_life(-1);
+            this.isDead = true;
+        }
+    }
 }
