@@ -143,9 +143,8 @@ export default class gamemgr extends cc.Component {
         this.update_firebase("coin",this.coin_num);
     }
     add_score(num){
-        // this.score += num;
-        // var score = cc.find("Canvas/Main Camera/score").getComponent(cc.Label);
-        // score.string = this.score.toString();
+        this.score_num += num;
+        this.update_firebase("score",this.score_num);
     }
 
     update_firebase(type,num){
@@ -166,7 +165,25 @@ export default class gamemgr extends cc.Component {
                         // cc.log("update firebase " + self.name + " coin:" + num);
                     }
                 })
-            }).catch(e => cc.log("update firebase catch"));
+            }).catch(e => cc.log("update firebase catch, coin"));
+        }
+        else if(type == "score"){
+            var ref = firebase.database().ref('list');
+            ref.once('value').then(function(snapshot){ 
+                // get info
+                snapshot.forEach(function(childshot) {
+                    // search for this user's info
+                    var childData = childshot.val();
+                    if(childData.email == self.email){
+                        var data = {
+                            score: num
+                        }
+                        ref.child(self.name).update(data);
+                        self.dataget = true;
+                        // cc.log("update firebase " + self.name + " coin:" + num);
+                    }
+                })
+            }).catch(e => cc.log("update firebase catch, score"));
         }
     }
 }
