@@ -30,6 +30,11 @@ export default class menu extends cc.Component {
 
     private email: string;
     private name: string;
+    private life_num: number = 0;
+    private coin_num: number = 0;
+    private score_num: number = 0;
+
+    private dataget: boolean = false;
 
     world1(){
         cc.director.loadScene("stage1");
@@ -42,9 +47,27 @@ export default class menu extends cc.Component {
         var self = this;
         firebase.auth().onAuthStateChanged(function(user) { 
             if(user){
+                self.email = user.email;
                 self.name = user.displayName;
             }
         });
+        var self = this;
+        var ref = firebase.database().ref('list');
+        ref.once('value').then(function(snapshot){ 
+            // get info
+            snapshot.forEach(function(childshot) {
+                // search for this user's info
+                var childData = childshot.val();
+                if(childData.email == self.email){
+                    self.life_num = childData.life;
+                    self.coin_num = childData.coin;
+                    self.score_num = childData.score;
+                    // cc.log("self.life_num: " + self.life_num );
+                    self.dataget = true;
+                }
+            })
+        }).catch(e => cc.log("get info error"));
+
     }
 
     start () {
@@ -57,6 +80,14 @@ export default class menu extends cc.Component {
             this.world2() }, this );
     }
 
-    // update (dt) { }
+    update (dt) { 
+
+        if(this.dataget){
+            this.life_data.getComponent(cc.Label).string = this.life_num.toString();
+            this.coin_data.getComponent(cc.Label).string = this.coin_num.toString();
+            this.score_data.getComponent(cc.Label).string = this.score_num.toString();
+            this.dataget = false;
+        }
+    }
 
 }
