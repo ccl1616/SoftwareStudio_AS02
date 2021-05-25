@@ -146,8 +146,8 @@ export default class gameMgr extends cc.Component {
         this.score_num += num;
         this.update_firebase("score",this.score_num);
     }
-    minus_life(){
-        this.life_num --;
+    minus_life(num){
+        this.life_num += num;
         this.update_firebase("life",this.life_num);
     }
 

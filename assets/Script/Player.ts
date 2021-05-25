@@ -169,10 +169,11 @@ export default class Player extends cc.Component
             this.onGround = true;
         } else if(other.node.name == "Enemy") {
             cc.log("Mario hits the enemy");
-            if(contact.getWorldManifold().normal.y != 1){
+            if(contact.getWorldManifold().normal.y == 1){
                 other.node.speed = 0;
-                this.die();
+                // this.die();
             }
+            // else minus life
         } else if(other.node.name == "green_mushroom"){
             cc.log("hit green_mushroom");
             if(!this.big_mario){
@@ -257,7 +258,7 @@ export default class Player extends cc.Component
         if(!this.isDead_pre){
             this.isDead_pre = true;
             this.gameMgr.getComponent("GameMgr").playLoseOneEffect();
-            this.gameMgr.getComponent("GameMgr").minus_life();
+            this.gameMgr.getComponent("GameMgr").minus_life(-1);
             this.isDead = true;
         }
     }
