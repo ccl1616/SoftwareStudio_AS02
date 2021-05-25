@@ -146,6 +146,10 @@ export default class gamemgr extends cc.Component {
         this.score_num += num;
         this.update_firebase("score",this.score_num);
     }
+    minus_life(){
+        this.life_num --;
+        this.update_firebase("life",this.life_num);
+    }
 
     update_firebase(type,num){
         var self = this;
@@ -184,6 +188,24 @@ export default class gamemgr extends cc.Component {
                     }
                 })
             }).catch(e => cc.log("update firebase catch, score"));
+        }
+        else if(type == "life"){
+            var ref = firebase.database().ref('list');
+            ref.once('value').then(function(snapshot){ 
+                // get info
+                snapshot.forEach(function(childshot) {
+                    // search for this user's info
+                    var childData = childshot.val();
+                    if(childData.email == self.email){
+                        var data = {
+                            life: num
+                        }
+                        ref.child(self.name).update(data);
+                        self.dataget = true;
+                        // cc.log("update firebase " + self.name + " coin:" + num);
+                    }
+                })
+            }).catch(e => cc.log("update firebase catch, life"));
         }
     }
 }

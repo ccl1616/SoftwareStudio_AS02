@@ -208,6 +208,7 @@ export default class Player extends cc.Component
             if(!this.isDead_pre){
                 this.isDead_pre = true;
                 this.gameMgr.getComponent("GameMgr").playLoseOneEffect();
+                this.gameMgr.getComponent("GameMgr").minus_life();
                 this.scheduleOnce(function(){
                     this.isDead = true;
                 },2);
