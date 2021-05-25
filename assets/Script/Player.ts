@@ -29,6 +29,7 @@ export default class Player extends cc.Component
     private onGround: boolean = false;
 
     private anim = null;
+    private animateState = null;
 
     private big_mario: boolean = false;
 
@@ -112,19 +113,17 @@ export default class Player extends cc.Component
     }
     private animation() {
         if(!this.isDead){
-            if(!this.anim.getAnimationState('walk').isPlaying){
-                if(this.zDown || this.xDown){
-                    this.anim.play('walk');
+            if(!this.anim.getAnimationState('jump').isPlaying){
+                if(this.kDown)
+                    this.animateState = this.anim.play('jump');
+                else if(this.zDown || this.xDown){
+                    if(this.animateState == null || this.animateState.name != 'walk')
+                        this.animateState = this.anim.play('walk');
                 }
-                else if(this.kDown)
-                    this.anim.play('jump');
-                else this.anim.play('idle');
-            }
-            else if(this.kDown)
-                this.anim.play('jump');
-            else if(this.anim.getAnimationState('jump').isPlaying){
-                if(!this.kDown)
-                    this.anim.play('idle');
+                else{
+                    if(this.animateState == null || this.animateState.name != 'idle')
+                        this.animateState = this.anim.play('idle');
+                }
             }
         }
     }
@@ -191,9 +190,7 @@ export default class Player extends cc.Component
             }
         } else if(other.node.name == "flower") {
             cc.log("Mario hits the folwer");
-            // this.onGround = true;
-            if(!this.debug)
-                this.isDead = true;
+            this.die();
         } else if(other.node.name == "flag_collider") {
             cc.log("Mario hits flag");
             this.levelclear = true;

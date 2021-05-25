@@ -67,6 +67,8 @@ export default class turtle extends cc.Component {
                     if(this.node.scaleX == -1)
                         this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(-500, 0);
                     else this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(500, 0);
+                    this.gameMgr.getComponent("GameMgr").update_life(1);
+                    this.gameMgr.getComponent("GameMgr").update_score(200);
                     this.scheduleOnce(function() { 
                         self.node.destroy(); 
                     }, 0.2);

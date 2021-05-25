@@ -21,6 +21,7 @@ export default class Player extends cc.Component
     private kDown: boolean = false; // key for player to jump
 
     private isDead: boolean = false;
+    
     private isDead_pre: boolean = false;
     
     private onGround: boolean = false;
@@ -28,6 +29,7 @@ export default class Player extends cc.Component
     private debug: boolean = true;
 
     private anim = null;
+    private animateState = null;
 
     private levelclear: boolean = false;
 
@@ -110,18 +112,20 @@ export default class Player extends cc.Component
     }
     
     private animation() {
-        if(!this.anim.getAnimationState('walk').isPlaying){
-            if(!this.kDown){
-                if(this.zDown || this.xDown){
-                    this.anim.play('walk');
+        if(!this.isDead){
+            if(!this.anim.getAnimationState('jump').isPlaying){
+                if(this.kDown)
+                    this.animateState = this.anim.play('jump');
+                else if(this.zDown || this.xDown){
+                    if(this.animateState == null || this.animateState.name != 'walk')
+                        this.animateState = this.anim.play('walk');
+                }
+                else{
+                    if(this.animateState == null || this.animateState.name != 'idle')
+                        this.animateState = this.anim.play('idle');
                 }
             }
-            else if(this.kDown)
-                this.anim.play('jump');
-            else this.anim.play('idle');
         }
-        else if(this.kDown)
-            this.anim.play('jump');
     }
     
     update(dt) {
