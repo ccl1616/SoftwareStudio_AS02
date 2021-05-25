@@ -51,7 +51,6 @@ export default class menu extends cc.Component {
                 self.name = user.displayName;
             }
         });
-        var self = this;
         var ref = firebase.database().ref('list');
         ref.once('value').then(function(snapshot){ 
             // get info

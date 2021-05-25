@@ -100,12 +100,12 @@ export default class GameManager extends cc.Component {
     }
 
     add_coin(){
-        this.coin_num ++;
+        // this.coin_num ++;
         var coin_num = cc.find("Canvas/Main Camera/coin_num").getComponent(cc.Label);
         coin_num.string = this.coin_num.toString();
     }
     add_score(num){
-        this.score += num;
+        // this.score += num;
         var score = cc.find("Canvas/Main Camera/score").getComponent(cc.Label);
         score.string = this.score.toString();
     }
