@@ -10,6 +10,7 @@ export default class Player extends cc.Component
     @property(cc.Node)
     gameMgr: cc.Node = null;
 
+    private debug: boolean = true;
 
     private playerSpeed: number = 0;
 
@@ -22,11 +23,10 @@ export default class Player extends cc.Component
     private kDown: boolean = false; // key for player to jump
 
     private isDead: boolean = false;
+
     private isDead_pre: boolean = false;
 
     private onGround: boolean = false;
-
-    private debug: boolean = true;
 
     private anim = null;
 
@@ -80,11 +80,12 @@ export default class Player extends cc.Component
             this.isDead = false;
             return; */
             // this.gameMgr.getComponent("GameMgr").playLoseOneEffect();
-            
-            cc.director.loadScene("stage1");
+            this.scheduleOnce(()=>{
+                cc.director.loadScene("stage1");
+            },2);
         }
 
-        if(this.zDown && !this.levelclear){
+        else if(this.zDown && !this.levelclear){
             this.playerSpeed = -300;
             this.node.scaleX = -1;
         }
@@ -92,11 +93,9 @@ export default class Player extends cc.Component
             this.playerSpeed = 300;
             this.node.scaleX = 1;
         }
-        
-        this.node.x += this.playerSpeed * dt;
-
-        if(this.kDown && this.onGround && !this.levelclear)
+        else if(this.kDown && this.onGround && !this.levelclear)
             this.jump();
+        this.node.x += this.playerSpeed * dt;
     }    
 
     private jump() {
@@ -112,26 +111,22 @@ export default class Player extends cc.Component
         // this.getComponent(cc.RigidBody).linearVelocity = cc.v2(0, 1500);
     }
     private animation() {
-        /*
-        if(this.onGround && !this.isDead){
-            this.getComponent(cc.Sprite).spriteFrame = this.groundSprite;
-        }
-        else {
-            this.getComponent(cc.Sprite).spriteFrame = this.jumpSprite; 
-        } */
-
-        if(!this.anim.getAnimationState('walk').isPlaying){
-            if(!this.kDown){
+        if(!this.isDead){
+            if(!this.anim.getAnimationState('walk').isPlaying){
                 if(this.zDown || this.xDown){
                     this.anim.play('walk');
                 }
+                else if(this.kDown)
+                    this.anim.play('jump');
+                else this.anim.play('idle');
             }
             else if(this.kDown)
                 this.anim.play('jump');
-            else this.anim.play('idle');
+            else if(this.anim.getAnimationState('jump').isPlaying){
+                if(!this.kDown)
+                    this.anim.play('idle');
+            }
         }
-        else if(this.kDown)
-            this.anim.play('jump');
     }
     
     update(dt) {
@@ -174,8 +169,10 @@ export default class Player extends cc.Component
             this.onGround = true;
         } else if(other.node.name == "Enemy") {
             cc.log("Mario hits the enemy");
-            // this.onGround = true;
-            // this.isDead = true;
+            if(contact.getWorldManifold().normal.y != 1){
+                other.node.speed = 0;
+                this.die();
+            }
         } else if(other.node.name == "green_mushroom"){
             cc.log("hit green_mushroom");
             if(!this.big_mario){
@@ -205,15 +202,7 @@ export default class Player extends cc.Component
             },3.5);
         } else if(other.node.name == "hell" || other.node.name == "left_bond") {
             cc.log("Mario hits hell");
-            if(!this.isDead_pre){
-                this.isDead_pre = true;
-                this.gameMgr.getComponent("GameMgr").playLoseOneEffect();
-                this.gameMgr.getComponent("GameMgr").minus_life();
-                this.scheduleOnce(function(){
-                    this.isDead = true;
-                },2);
-            }
-            // this.isDead = true;
+            this.die();
         } 
         else if(other.node.name == "left_wall" || other.node.name == "right_wall") {
             contact.disabled = true;
@@ -263,6 +252,14 @@ export default class Player extends cc.Component
                 this.camera.x = this.node.x;
             }
         }*/
+    }
+    die(){
+        if(!this.isDead_pre){
+            this.isDead_pre = true;
+            this.gameMgr.getComponent("GameMgr").playLoseOneEffect();
+            this.gameMgr.getComponent("GameMgr").minus_life();
+            this.isDead = true;
+        }
     }
 
 }

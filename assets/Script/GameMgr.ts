@@ -11,7 +11,7 @@
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export default class gamemgr extends cc.Component {
+export default class gameMgr extends cc.Component {
 
     @property({type:cc.AudioClip})
     bgm: cc.AudioClip = null;

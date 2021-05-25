@@ -79,9 +79,9 @@ export default class Enemy extends cc.Component {
                 this.scheduleOnce(function() { self.node.destroy(); cc.log("killed"); }, 0.1);
             }
             else {
-                // cc.log("horizontal or head");
-                // minus life
-                contact.disabled = true;
+                // horizontal
+                // minus life @ player
+                // contact.disabled = true;
             } 
             // this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.speed, 0);
 
