@@ -11,7 +11,7 @@
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export default class GameManager extends cc.Component {
+export default class gamemgr extends cc.Component {
 
     @property({type:cc.AudioClip})
     bgm: cc.AudioClip = null;
@@ -43,14 +43,48 @@ export default class GameManager extends cc.Component {
     @property({type:cc.AudioClip})
     gameover: cc.AudioClip = null;
 
+    @property(cc.Node)
+    life_data: cc.Node = null;
+    @property(cc.Node)
+    coin_data: cc.Node = null;
+    @property(cc.Node)
+    score_data: cc.Node = null;
+
+    private email: string;
+    private name: string;
+    private life_num: number = 0;
     private coin_num: number = 0;
-    private score: number = 0;
+    private score_num: number = 0;
+    private dataget: boolean = false;
+
     private debug: boolean = true;
 
     onLoad () {
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         if(!this.debug)
             this.playBGM();
+        // user info
+        var self = this;
+        firebase.auth().onAuthStateChanged(function(user) { 
+            if(user){
+                self.email = user.email;
+                self.name = user.displayName;
+            }
+        });
+        var ref = firebase.database().ref('list');
+        ref.once('value').then(function(snapshot){ 
+            // get info
+            snapshot.forEach(function(childshot) {
+                // search for this user's info
+                var childData = childshot.val();
+                if(childData.email == self.email){
+                    self.life_num = childData.life;
+                    self.coin_num = childData.coin;
+                    self.score_num = childData.score;
+                    self.dataget = true;
+                }
+            })
+        }).catch(e => cc.log("get info error"));
     }
     
     onKeyDown(event) {
@@ -59,11 +93,16 @@ export default class GameManager extends cc.Component {
         }
     }
 
-    start () {
-        // this.playBGM();
-    }
+    // start () { }
 
-    // update (dt) {}
+    update (dt) {
+        if(this.dataget){
+            this.life_data.getComponent(cc.Label).string = this.life_num.toString();
+            this.coin_data.getComponent(cc.Label).string = this.coin_num.toString();
+            this.score_data.getComponent(cc.Label).string = this.score_num.toString();
+            this.dataget = false;
+        }
+    }
 
     playBGM(){
         cc.audioEngine.playMusic(this.bgm, false);
@@ -100,13 +139,35 @@ export default class GameManager extends cc.Component {
     }
 
     add_coin(){
-        // this.coin_num ++;
-        var coin_num = cc.find("Canvas/Main Camera/coin_num").getComponent(cc.Label);
-        coin_num.string = this.coin_num.toString();
+        this.coin_num ++;
+        // this.dataget = true;
+        this.update_firebase("coin",this.coin_num);
     }
     add_score(num){
         // this.score += num;
-        var score = cc.find("Canvas/Main Camera/score").getComponent(cc.Label);
-        score.string = this.score.toString();
+        // var score = cc.find("Canvas/Main Camera/score").getComponent(cc.Label);
+        // score.string = this.score.toString();
+    }
+
+    update_firebase(type,num){
+        var self = this;
+        if(type == "coin"){
+            var ref = firebase.database().ref('list');
+            ref.once('value').then(function(snapshot){ 
+                // get info
+                snapshot.forEach(function(childshot) {
+                    // search for this user's info
+                    var childData = childshot.val();
+                    if(childData.email == self.email){
+                        var data = {
+                            coin: num
+                        }
+                        ref.child(self.name).update(data);
+                        self.dataget = true;
+                        // cc.log("update firebase " + self.name + " coin:" + num);
+                    }
+                })
+            }).catch(e => cc.log("update firebase catch"));
+        }
     }
 }
