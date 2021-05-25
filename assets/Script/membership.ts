@@ -51,30 +51,35 @@ export default class membership extends cc.Component {
             // auth create user
             var info_email = this.email_node.getComponent(cc.EditBox).string;
             var info_password = this.password_node.getComponent(cc.EditBox).string;
+            var username;
             firebase.auth().createUserWithEmailAndPassword(info_email, info_password).then(function(result){
                 var user = result.user;
-                var username = prompt("input your username:", "anonymous");
+                username = prompt("input your username:", "");
                 user.updateProfile({
                     displayName: username
                 }).then(function(){
-                    // console.log(user.displayName);
-                })
-                cc.log("sign up success, " + user.displayName);
+                    cc.log("sign up success, " + username);
 
+                    // create database
+                    cc.log("createData");
+                    var ref = firebase.database().ref('list');
+                    // life, coin, score
+                    var data = {
+                        email: info_email,
+                        life: 5,
+                        coin: 0,
+                        score: 0
+                    };
+                    // ref.push(data);
+                    ref.child(username).set(data);
+                })
             }).catch(function(error){
-                cc.log("sign up error");
+                // cc.log("sign up error");
             });
         }, this );
 
     }
 
     // update (dt) {}
-    sendValue(email,password){
-        var ref = firebase.database().ref('test');
-        var data = {
-            email: email,
-            pw: password
-        };
-        ref.push(data);
-    }
+
 }

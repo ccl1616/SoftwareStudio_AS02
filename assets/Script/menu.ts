@@ -21,6 +21,13 @@ export default class menu extends cc.Component {
     @property(cc.Node)
     user_info_node: cc.Node = null;
 
+    @property(cc.Node)
+    life_data: cc.Node = null;
+    @property(cc.Node)
+    coin_data: cc.Node = null;
+    @property(cc.Node)
+    score_data: cc.Node = null;
+
     private email: string;
     private name: string;
 
@@ -35,8 +42,6 @@ export default class menu extends cc.Component {
         var self = this;
         firebase.auth().onAuthStateChanged(function(user) { 
             if(user){
-                cc.log("firebase: " + user.email);
-                self.email = user.email;
                 self.name = user.displayName;
             }
         });
@@ -53,10 +58,5 @@ export default class menu extends cc.Component {
     }
 
     // update (dt) { }
-    getEmail(email){
-        cc.log("function: " + email);
-        this.email = email;
-        cc.log("this.email: "+ this.email);
-    }
 
 }
