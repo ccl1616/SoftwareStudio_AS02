@@ -29,6 +29,8 @@ export default class Enemy extends cc.Component {
 
     private speed = -200;
 
+    private isTouched = false;
+
     onLoad() {
         cc.director.getPhysicsManager().enabled = true;
     }
@@ -45,6 +47,7 @@ export default class Enemy extends cc.Component {
             this.resetPos();
             this.isDead = false;
             this.isStepped = false;
+            this.isTouched = false;
             this.speed = -200;
         }
     }
@@ -82,9 +85,12 @@ export default class Enemy extends cc.Component {
             else {
                 // horizontal
                 // minus life @ player
-                contact.disabled = true;
-                this.gameMgr.getComponent("GameMgr").playPowerdownEffect();
-                this.gameMgr.getComponent("GameMgr").update_life(-1);
+                if(!this.isTouched){
+                    this.isTouched = true;
+                    contact.disabled = true;
+                    this.gameMgr.getComponent("GameMgr").playPowerdownEffect();
+                    this.gameMgr.getComponent("GameMgr").update_life(-1);
+                }
             } 
             // this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.speed, 0);
 
