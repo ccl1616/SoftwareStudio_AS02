@@ -345,7 +345,7 @@
       "array": [
         0,
         0,
-        480.64409910036346,
+        478.9120482927946,
         0,
         0,
         0,
@@ -1399,7 +1399,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -206.023,
+        -218.057,
         -265.091,
         0,
         0,
@@ -1515,8 +1515,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -168.348,
-        -247.51,
+        -179.714,
+        -249.516,
         0,
         0,
         0,
@@ -1631,7 +1631,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -120.177,
+        -123.52,
         -233.813,
         0,
         0,
@@ -1702,7 +1702,7 @@
     },
     "_size": {
       "__type__": "cc.Size",
-      "width": 60,
+      "width": 70,
       "height": 110
     },
     "_id": "00qewczpNCdKv9jaESt0+l"
@@ -1747,7 +1747,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -62.659,
+        -67.339,
         -265.702,
         0,
         0,
@@ -1818,7 +1818,7 @@
     },
     "_size": {
       "__type__": "cc.Size",
-      "width": 78,
+      "width": 85,
       "height": 49
     },
     "_id": "79cub727hK4qF3ufJNkY8p"
@@ -2095,7 +2095,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        1383.093,
+        1379.416,
         -216.752,
         0,
         0,
@@ -2211,7 +2211,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        1462.331,
+        1460.23,
         -184.864,
         0,
         0,

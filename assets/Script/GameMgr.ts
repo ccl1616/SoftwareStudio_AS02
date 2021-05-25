@@ -138,16 +138,20 @@ export default class gameMgr extends cc.Component {
         cc.audioEngine.playEffect(this.gameover, false);
     }
 
-    add_coin(){
+    update_coin(){
         this.coin_num ++;
         this.update_firebase("coin",this.coin_num);
     }
-    add_score(num){
-        this.score_num += num;
+    update_score(num){
+        if(this.score_num == 0 && num < 0)
+            this.score_num = 0;
+        else this.score_num += num;
         this.update_firebase("score",this.score_num);
     }
-    minus_life(num){
-        this.life_num += num;
+    update_life(num){
+        if(this.life_num == 0 && num < 0)
+            this.life_num = 0;
+        else this.life_num += num;
         this.update_firebase("life",this.life_num);
     }
 

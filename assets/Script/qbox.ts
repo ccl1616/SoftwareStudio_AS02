@@ -55,14 +55,14 @@ export default class qbox extends cc.Component {
                     this.node.runAction(action);
                     // show the coin
                     var coin = cc.find("coin");
-                    this.gameMgr.getComponent("GameMgr").add_coin();
+                    this.gameMgr.getComponent("GameMgr").update_coin();
                     this.gameMgr.getComponent("GameMgr").playCoinEffect();
                     let action2 = cc.sequence( cc.moveBy(0.5,0,40),cc.hide());
                     coin.runAction(action2);
                     this.scheduleOnce( function() { coin.destroy(); } , 2);
                     // show with score
                     var score = cc.find("score100");
-                    this.gameMgr.getComponent("GameMgr").add_score(100);
+                    this.gameMgr.getComponent("GameMgr").update_score(100);
                     let action3 = cc.sequence( cc.hide(), cc.moveBy(0.5,0,40), cc.show(), cc.fadeOut(1.0) );
                     score.runAction(action3);
                     this.scheduleOnce( function() { score.destroy(); } , 2);

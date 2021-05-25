@@ -76,7 +76,7 @@ export default class Enemy extends cc.Component {
                 contact.disabled = true;
                 this.isStepped = true;
                 this.gameMgr.getComponent("GameMgr").playKickEffect();
-                this.gameMgr.getComponent("GameMgr").add_score(500);
+                this.gameMgr.getComponent("GameMgr").update_score(500);
                 this.scheduleOnce(function() { self.node.destroy(); cc.log("killed"); }, 0.1);
             }
             else {
@@ -84,7 +84,7 @@ export default class Enemy extends cc.Component {
                 // minus life @ player
                 contact.disabled = true;
                 this.gameMgr.getComponent("GameMgr").playPowerdownEffect();
-                this.gameMgr.getComponent("GameMgr").minus_life(-1);
+                this.gameMgr.getComponent("GameMgr").update_life(-1);
             } 
             // this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.speed, 0);
 
