@@ -205,7 +205,7 @@ export default class gameMgr extends cc.Component {
                             life: num
                         }
                         ref.child(self.name).update(data);
-                        self.dataget = true;
+                        // self.dataget = true;
                         // cc.log("update firebase " + self.name + " coin:" + num);
                     }
                 })
