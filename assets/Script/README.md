@@ -1,5 +1,3 @@
-# ss2021 hw2
-
 # Software Studio 2021 Spring Assignment 2
 
 ## Basic Components
