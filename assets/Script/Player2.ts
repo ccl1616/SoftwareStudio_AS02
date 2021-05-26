@@ -29,7 +29,6 @@ export default class Player extends cc.Component
     
     private onGround: boolean = false;
 
-    private debug: boolean = true;
 
     private anim = null;
     private animateState = null;

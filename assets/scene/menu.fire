@@ -328,7 +328,7 @@
       "array": [
         0,
         0,
-        470.2517942549502,
+        486.70627692685457,
         0,
         0,
         0,
@@ -915,7 +915,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 144.02,
+      "width": 0,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -966,8 +966,8 @@
       }
     ],
     "_useOriginalSize": false,
-    "_string": "userinfo",
-    "_N$string": "userinfo",
+    "_string": "",
+    "_N$string": "",
     "_fontSize": 30,
     "_lineHeight": 40,
     "_enableWrapText": true,
@@ -1207,7 +1207,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        875.389,
+        891.026,
         489.019,
         0,
         0,
