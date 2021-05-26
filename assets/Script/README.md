@@ -14,7 +14,18 @@
 
 ### Basic Components Description : 
 1. World map : 
-    stage1 and stage2
+    
+``` 
+    stage1: mainly with traditional elements 
+```
+    
+![](https://i.imgur.com/erfNUyU.png)
+    
+``` 
+    stage2: include some new elements
+    (menetioned in Bonus part, includes ghost floor and moving brick)
+```
+![](https://i.imgur.com/lIkT6Aj.png)
 2. Player : 
     player have 4 kinds of animation during the game.\
     (idle, walk, jump, dead)
