@@ -68,8 +68,8 @@ export default class Player extends cc.Component
         else if(event.keyCode == cc.macro.KEY.k){
             this.kDown = false;
         }
-        if(this.anim.getAnimationState('walk').isPlaying)
-            this.anim.stop('walk');
+        // if(this.anim.getAnimationState('walk').isPlaying)
+        //     this.anim.stop('walk');
     }
     
     private playerMovement(dt) {
