@@ -198,8 +198,10 @@ export default class Player extends cc.Component
         } else if(other.node.name == "flag_collider") {
             cc.log("Mario hits flag");
             this.levelclear = true;
+            this.gameMgr.getComponent("GameMgr").stopBGM();
             this.gameMgr.getComponent("GameMgr").playLevelclearEffect();
             this.scheduleOnce(function(){
+                // this.gameMgr.getComponent("GameMgr").stopBGM();
                 cc.director.loadScene("menu");
             },3.5);
         } else if(other.node.name == "hell" || other.node.name == "left_bond") {

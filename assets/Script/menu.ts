@@ -37,10 +37,10 @@ export default class menu extends cc.Component {
     private dataget: boolean = false;
 
     world1(){
-        cc.director.loadScene("stage1");
+        cc.director.loadScene("buffer_scene1");
     }
     world2(){
-        cc.director.loadScene("stage2");
+        cc.director.loadScene("buffer_scene2");
     }
     onLoad() {
         // user info

@@ -11,13 +11,11 @@
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export default class game_over extends cc.Component {
-
-    // LIFE-CYCLE CALLBACKS:
+export default class buffer_scene1 extends cc.Component {
 
     start () {
-        this.scheduleOnce(function(){
-            cc.director.loadScene("menu");
+        this.scheduleOnce(()=>{
+            cc.director.loadScene("stage1");
         },3);
     }
 

@@ -67,7 +67,7 @@
     "_groupIndex": 0,
     "groupIndex": 0,
     "autoReleaseAssets": false,
-    "_id": "aeebaca0-9935-4867-8c63-8b3c7caa7f79"
+    "_id": "a8ac30db-4da1-445d-a03c-526c34fb48ee"
   },
   {
     "__type__": "cc.Node",
@@ -254,14 +254,14 @@
     "_id": "a41L3oFSlES7khYEMOzOY7"
   },
   {
-    "__type__": "2d433eENS9Fu7ZYyoTaqJiq",
+    "__type__": "c533dy6nM9Lp7GxScGm6YQf",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 2
     },
     "_enabled": true,
-    "_id": "2cyv4CgSdB2b+bgKEPEF1f"
+    "_id": "c8M46mceRKBoTG+IFpa7QB"
   },
   {
     "__type__": "cc.Node",

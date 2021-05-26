@@ -174,7 +174,7 @@
       "array": [
         0,
         0,
-        489.3043531382079,
+        496.23255636848336,
         0,
         0,
         0,
@@ -293,7 +293,7 @@
     "_is3DNode": false,
     "_groupIndex": 0,
     "groupIndex": 0,
-    "_id": "7eztXfwEVOLpW93wlQ+140"
+    "_id": "221e5r0lRO5qsNnkIukFFp"
   },
   {
     "__type__": "edec5LyWVtMoKvkxDGOvC/P",
@@ -303,7 +303,7 @@
       "__id__": 5
     },
     "_enabled": true,
-    "_id": "58RSDvAH9J94Jgwy47m36n"
+    "_id": "bfDelzyRxH44CwK+9MN7db"
   },
   {
     "__type__": "cc.Canvas",

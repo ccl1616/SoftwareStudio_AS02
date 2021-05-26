@@ -181,6 +181,7 @@ export default class Player extends cc.Component
         } else if(other.node.name == "flag_collider") {
             cc.log("Mario hits flag");
             this.levelclear = true;
+            this.gameMgr.getComponent("GameMgr").stopBGM();
             this.gameMgr.getComponent("GameMgr").playLevelclearEffect();
             this.scheduleOnce(function(){
                 cc.director.loadScene("menu");

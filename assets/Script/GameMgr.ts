@@ -57,7 +57,7 @@ export default class gameMgr extends cc.Component {
     private score_num: number = 0;
     private dataget: boolean = false;
 
-    private debug: boolean = true;
+    private debug: boolean = false;
 
     onLoad () {
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
@@ -149,10 +149,12 @@ export default class gameMgr extends cc.Component {
         this.update_firebase("score",this.score_num);
     }
     update_life(num){
-        if(this.life_num == 0 && num < 0)
+        if(this.life_num + num <= 0)
             this.life_num = 0;
         else this.life_num += num;
         this.update_firebase("life",this.life_num);
+        if(this.life_num == 0)
+            cc.director.loadScene("game_over");
     }
 
     update_firebase(type,num){
