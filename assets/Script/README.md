@@ -18,8 +18,8 @@
 2. Player : 
     player have 4 kinds of animation during the game.\
     (idle, walk, jump, dead)
-3. Enemies : 
-    a. Goomba: If horizontally touched, player's life-1. Else if player vertically stepped onto the enemy, player's score+500 and enemy disappear.
+3. Enemies :\ 
+    a. Goomba: \    If horizontally touched, player's life-1. \     Else if player vertically stepped onto the enemy, player's score+500 and enemy disappear.
     b. 
 4. Question Blocks : [xxxx]
 5. Animations : [xxxx]
