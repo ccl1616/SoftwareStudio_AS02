@@ -153,8 +153,6 @@ export default class gameMgr extends cc.Component {
             this.life_num = 0;
         else this.life_num += num;
         this.update_firebase("life",this.life_num);
-        if(this.life_num == 0)
-            cc.director.loadScene("game_over");
     }
 
     update_firebase(type,num){
@@ -204,11 +202,13 @@ export default class gameMgr extends cc.Component {
                     var childData = childshot.val();
                     if(childData.email == self.email){
                         var data = {
-                            life: num
+                            life: (num == 0) ?5:num
                         }
                         ref.child(self.name).update(data);
                         // self.dataget = true;
                         // cc.log("update firebase " + self.name + " coin:" + num);
+                        if(num == 0)
+                            cc.director.loadScene("game_over");
                     }
                 })
             }).catch(e => cc.log("update firebase catch, life"));
