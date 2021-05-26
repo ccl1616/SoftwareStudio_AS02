@@ -1,6 +1,4 @@
 # Software Studio 2021 Spring Assignment 2
-## Notice
-* Replace all [xxxx] to your answer
 
 ## Basic Components
 |Component|Score|Y/N|
@@ -14,16 +12,21 @@
 
 ## Website Detail Description
 
-# Basic Components Description : 
-1. World map : [xxxx]
-2. Player : [xxxx]
-3. Enemies : [xxxx]
+### Basic Components Description : 
+1. World map : 
+    stage1 and stage2
+2. Player : 
+    player have 4 kinds of animation during the game.\
+    (idle, walk, jump, dead)
+3. Enemies : 
+    a. Goomba: If horizontally touched, player's life-1. Else if player vertically stepped onto the enemy, player's score+500 and enemy disappear.
+    b. 
 4. Question Blocks : [xxxx]
 5. Animations : [xxxx]
 6. Sound effects : [xxxx]
 7. UI : [xxxx]
 
-# Bonus Functions Description : 
+### Bonus Functions Description : 
 1. [xxxx] : [xxxx]
 2. [xxxx] : [xxxx]
 3. [xxxx] : [xxxx]
