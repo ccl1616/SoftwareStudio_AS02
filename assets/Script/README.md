@@ -26,6 +26,7 @@
     (menetioned in Bonus part, includes ghost floor and moving brick)
 ```
 ![](https://i.imgur.com/lIkT6Aj.png)
+
 2. Player : 
     player have 4 kinds of animation during the game.\
     (idle, walk, jump, dead)
