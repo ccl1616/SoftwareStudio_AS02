@@ -21,6 +21,9 @@ export default class Enemy extends cc.Component {
     @property(cc.Node)
     gameMgr: cc.Node = null;
 
+    @property(cc.Node)
+    player: cc.Node = null;
+
     private rebornPos = null;
 
     private isDead = true;
@@ -97,7 +100,7 @@ export default class Enemy extends cc.Component {
                     this.isTouched = true;
                     contact.disabled = true;
                     this.gameMgr.getComponent("GameMgr").playPowerdownEffect();
-                    this.gameMgr.getComponent("GameMgr").update_life(-1);
+                    this.player.getComponent("Player").die();
                 }
             } 
             // this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.speed, 0);
