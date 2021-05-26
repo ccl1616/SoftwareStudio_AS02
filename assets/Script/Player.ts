@@ -95,7 +95,7 @@ export default class Player extends cc.Component
             this.playerSpeed = 300;
             this.node.scaleX = 1;
         }
-        else if(this.kDown && this.onGround && !this.levelclear)
+        if(this.kDown && this.onGround && !this.levelclear)
             this.jump();
         this.node.x += this.playerSpeed * dt;
     }    
@@ -131,6 +131,7 @@ export default class Player extends cc.Component
                 }
             }
         }
+        else this.animateState = this.anim.play('dead_mario');
     }
     
     update(dt) {

@@ -61,7 +61,7 @@ export default class gameMgr extends cc.Component {
     private dataget: boolean = false;
     private dataget2: boolean = false;
 
-    private time: number = 10;
+    private time: number = 300;
     private debug: boolean = false;
 
     onLoad () {
