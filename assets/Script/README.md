@@ -1,3 +1,5 @@
+# ss2021 hw2
+
 # Software Studio 2021 Spring Assignment 2
 
 ## Basic Components
@@ -16,20 +18,26 @@
 1. World map : 
     
 ``` 
-    stage1: mainly with traditional elements 
+    stage1: mainly with traditional elements.
+    note: clouds are just decoration. 
 ```
     
 ![](https://i.imgur.com/erfNUyU.png)
     
 ``` 
-    stage2: include some new elements
+    stage2: include some new elements.
     (menetioned in Bonus part, includes ghost floor and moving brick)
 ```
 ![](https://i.imgur.com/lIkT6Aj.png)
 
+
 2. Player : 
-    player have 4 kinds of animation during the game.\
+```
+    - press Z,X to move
+    - press K to jump
+    - player have 4 kinds of animation during the game.
     (idle, walk, jump, dead)
+```
 3. Enemies : 
     |Name|Situation|Result on player|
     |:-:|:-:|:-:|
@@ -71,4 +79,12 @@
 
 
 ### Bonus Functions Description : 
-- none
+``` 
+    stage2: include some new elements
+    1. ghost floor: 
+        ghost floor will disappear after a few seconds after player step onto it.
+    2. moving brick: 
+        moving brick for player to step on.
+```
+![](https://i.imgur.com/SfZhzEh.png)
+![](https://i.imgur.com/WW2aIvV.jpg)
