@@ -211,6 +211,9 @@
     "score_data": {
       "__id__": 90
     },
+    "time_num": {
+      "__id__": 84
+    },
     "_id": "d1E4kp1dRE25OuiW2OG/wY"
   },
   {
@@ -3564,7 +3567,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 75,
+      "width": 0,
       "height": 125
     },
     "_anchorPoint": {
@@ -3615,8 +3618,8 @@
       }
     ],
     "_useOriginalSize": false,
-    "_string": "300",
-    "_N$string": "300",
+    "_string": "",
+    "_N$string": "",
     "_fontSize": 100,
     "_lineHeight": 40,
     "_enableWrapText": true,
@@ -5569,6 +5572,9 @@
     },
     "gameMgr": {
       "__id__": 2
+    },
+    "time_num": {
+      "__id__": 84
     },
     "camera": {
       "__id__": 5

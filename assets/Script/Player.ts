@@ -10,6 +10,9 @@ export default class Player extends cc.Component
     @property(cc.Node)
     gameMgr: cc.Node = null;
 
+    @property(cc.Node)
+    time_num: cc.Node = null;
+
     private playerSpeed: number = 0;
 
     private zDown: boolean = false; // key for player to go left
@@ -134,6 +137,7 @@ export default class Player extends cc.Component
         this.playerMovement(dt);
         this.camerafollow();
         this.animation();
+        this.check_time();
     }
 
     onBeginContact(contact, self, other) {
@@ -264,5 +268,10 @@ export default class Player extends cc.Component
             this.isDead = true;
         }
     }
-
+    check_time(){
+        if(this.time_num.getComponent(cc.Label).string == "0"){
+            // cc.log("check time = 0");
+            this.die();
+        }
+    }
 }

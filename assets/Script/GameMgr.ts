@@ -50,13 +50,18 @@ export default class gameMgr extends cc.Component {
     @property(cc.Node)
     score_data: cc.Node = null;
 
+    @property(cc.Node)
+    time_num: cc.Node = null;
+
     private email: string;
     private name: string;
     private life_num: number = 0;
     private coin_num: number = 0;
     private score_num: number = 0;
     private dataget: boolean = false;
+    private dataget2: boolean = false;
 
+    private time: number = 10;
     private debug: boolean = false;
 
     onLoad () {
@@ -93,7 +98,14 @@ export default class gameMgr extends cc.Component {
         }
     }
 
-    // start () { }
+    start () { 
+       // var self = this;
+        this.schedule(()=>{
+            if(this.time != 0)
+                this.time --;
+            this.time_num.getComponent(cc.Label).string = this.time.toString();
+        },1);
+    }
 
     update (dt) {
         if(this.dataget){
