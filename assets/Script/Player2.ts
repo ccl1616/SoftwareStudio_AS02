@@ -101,14 +101,11 @@ export default class Player extends cc.Component
     private jump() {
         this.onGround = false;
 
-        // Method I: Apply Force to rigidbody
+        // Method II: Change velocity of rigidbody
         if(this.node.width == 38)
-            this.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(0, 100000), true);
+            this.getComponent(cc.RigidBody).linearVelocity = cc.v2(0, 1000);
         else 
             this.getComponent(cc.RigidBody).linearVelocity = cc.v2(0, 1500);
-        // Method II: Change velocity of rigidbody
-        // if(this.node.width != 38)
-        // this.getComponent(cc.RigidBody).linearVelocity = cc.v2(0, 1500);
     }
     
     private animation() {

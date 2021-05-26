@@ -29,8 +29,8 @@ export default class flower extends cc.Component {
     }
 
     private animation() {
-        let action1 = cc.moveBy(1,0,-68);
-        let action2 = cc.moveBy(1,0,68);
+        let action1 = cc.moveBy(1,0,-80);
+        let action2 = cc.moveBy(1,0,80);
         this.schedule(function(){
             var id = this.cnt % 2;
             if(id == 0)
