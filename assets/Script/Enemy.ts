@@ -115,11 +115,13 @@ export default class Enemy extends cc.Component {
         }
     }
     private animation() {
-        if(this.isStepped) {
-            cc.log("play stepped anim");
-            this.animateState = this.anim.play('goomba_stepped');
+        if(this.isStepped){
+            this.getComponent(cc.Animation).play('goomba_stepped');
+            // this.getComponent(cc.Sprite).spriteFrame = this.deadSprite;
         }
-        // else this.animateState = this.anim.play('goomba');
+        else {
+            this.getComponent(cc.Sprite).spriteFrame = this.aliveSprite;
+        }
     }
 
 }
