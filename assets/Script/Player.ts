@@ -10,8 +10,6 @@ export default class Player extends cc.Component
     @property(cc.Node)
     gameMgr: cc.Node = null;
 
-    private debug: boolean = true;
-
     private playerSpeed: number = 0;
 
     private zDown: boolean = false; // key for player to go left
