@@ -31,8 +31,13 @@ export default class Enemy extends cc.Component {
 
     private isTouched = false;
 
+    private anim = null;
+    private animateState = null;
+
     onLoad() {
         cc.director.getPhysicsManager().enabled = true;
+        // this.anim = this.getComponent(cc.Animation);
+        // this.anim.play('goomba');
     }
 
     start() {
@@ -80,7 +85,10 @@ export default class Enemy extends cc.Component {
                 this.isStepped = true;
                 this.gameMgr.getComponent("GameMgr").playKickEffect();
                 this.gameMgr.getComponent("GameMgr").update_score(500);
-                this.scheduleOnce(function() { self.node.destroy(); cc.log("killed"); }, 0.1);
+                this.scheduleOnce(function() { 
+                    self.node.destroy(); 
+                    cc.log("killed"); 
+                }, 0.5);
             }
             else {
                 // horizontal
@@ -107,9 +115,11 @@ export default class Enemy extends cc.Component {
         }
     }
     private animation() {
-        if(this.isStepped)
-            this.getComponent(cc.Sprite).spriteFrame = this.deadSprite;
-        else this.getComponent(cc.Sprite).spriteFrame = this.aliveSprite;
+        if(this.isStepped) {
+            cc.log("play stepped anim");
+            this.animateState = this.anim.play('goomba_stepped');
+        }
+        // else this.animateState = this.anim.play('goomba');
     }
 
 }
