@@ -117,7 +117,7 @@ export default class gameMgr extends cc.Component {
     }
 
     playBGM(){
-        cc.audioEngine.playMusic(this.bgm, false);
+        cc.audioEngine.playMusic(this.bgm, true);
     }
     stopBGM(){
         cc.audioEngine.pauseMusic();
